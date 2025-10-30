@@ -1,0 +1,6 @@
+@Thesis_API1_HostAddress = http://localhost:5049
+
+GET {{Thesis_API1_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

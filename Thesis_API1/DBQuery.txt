@@ -1,0 +1,125 @@
+-- Drop DB if exists (for clean re-runs)
+IF DB_ID('AngeDB') IS NOT NULL
+    DROP DATABASE AngeDB;
+GO
+
+-- Create Database
+CREATE DATABASE AngeDB;
+GO
+
+USE AngeDB;
+GO
+
+-------------------------------------------------------
+-- Students Table
+-------------------------------------------------------
+CREATE TABLE Students (
+    StudentID       INT IDENTITY(1,1) PRIMARY KEY,  
+    StudentNumber   INT UNIQUE NOT NULL,            -- Changed to INT
+    StudentName     NVARCHAR(100) NOT NULL,
+    GradeLevel      INT NOT NULL,
+    PasswordHash    NVARCHAR(255) NOT NULL          
+);
+GO
+
+-------------------------------------------------------
+-- Teachers Table
+-------------------------------------------------------
+CREATE TABLE Teachers (
+    TeacherID       INT IDENTITY(1,1) PRIMARY KEY,
+    TeacherNumber   INT UNIQUE NOT NULL,            -- Changed to INT
+    TeacherName     NVARCHAR(100) NOT NULL,
+    PasswordHash    NVARCHAR(255) NOT NULL
+);
+GO
+
+-------------------------------------------------------
+-- Admins Table
+-------------------------------------------------------
+CREATE TABLE Admins (
+    AdminID         INT IDENTITY(1,1) PRIMARY KEY,
+    AdminNumber     INT UNIQUE NOT NULL,            -- Changed to INT
+    AdminName       NVARCHAR(100) NOT NULL,
+    PasswordHash    NVARCHAR(255) NOT NULL
+);
+GO
+
+-------------------------------------------------------
+-- Subjects Table
+-------------------------------------------------------
+CREATE TABLE Subjects (
+    SubjectID       INT IDENTITY(1,1) PRIMARY KEY,
+    SubjectCode     VARCHAR(20) UNIQUE NOT NULL,
+    SubjectName     NVARCHAR(100) NOT NULL,
+    TeacherID       INT NOT NULL,
+    FOREIGN KEY (TeacherID) REFERENCES Teachers(TeacherID)
+);
+GO
+
+-------------------------------------------------------
+-- Enrollment (many-to-many: Student ↔ Subject)
+-------------------------------------------------------
+CREATE TABLE Enrollment (
+    EnrollmentID    INT IDENTITY(1,1) PRIMARY KEY,
+    StudentID       INT NOT NULL,
+    SubjectID       INT NOT NULL,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
+);
+GO
+
+-------------------------------------------------------
+-- Attendance Log
+-------------------------------------------------------
+CREATE TABLE AttendanceLog (
+    LogID           INT IDENTITY(1,1) PRIMARY KEY,
+    StudentID       INT NOT NULL,
+    SubjectID       INT NOT NULL,
+    PCNumber        VARCHAR(50) NOT NULL,
+    RoomNumber      VARCHAR(50) NULL,
+    LogDate         DATE NOT NULL DEFAULT CAST(GETDATE() AS DATE),
+    LogOnTime       TIME NOT NULL DEFAULT CAST(GETDATE() AS TIME),
+    LogOffTime      TIME NULL,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
+);
+GO
+
+-------------------------------------------------------
+-- Insert Sample Data
+-------------------------------------------------------
+
+-- Students (6) 
+-- Example format: 2025001001, 2025001002, etc.
+INSERT INTO Students (StudentNumber, StudentName, GradeLevel, PasswordHash) VALUES
+(2025001001, 'Alice Santos', 10, 'hash123'),
+(2025001002, 'Brian Cruz', 10, 'hash123'),
+(2025001003, 'Carla Dela Rosa', 11, 'hash123'),
+(2025001004, 'David Tan', 11, 'hash123'),
+(2025001005, 'Ella Navarro', 12, 'hash123'),
+(2025001006, 'Felix Mendoza', 12, 'hash123');
+
+-- Teachers (3)
+-- Example format: 2025101001, 2025101002, etc.
+INSERT INTO Teachers (TeacherNumber, TeacherName, PasswordHash) VALUES
+(2025101001, 'Mr. Reyes', 'hash123'),
+(2025101002, 'Ms. Lim', 'hash123'),
+(2025101003, 'Mrs. Gomez', 'hash123');
+
+-- Admins (2)
+-- Example format: 2025201001, 2025201002
+INSERT INTO Admins (AdminNumber, AdminName, PasswordHash) VALUES
+(2025201001, 'Admin One', 'hash123'),
+(2025201002, 'Admin Two', 'hash123');
+
+-- Subjects (assign teachers)
+INSERT INTO Subjects (SubjectCode, SubjectName, TeacherID) VALUES
+('MATH10', 'Mathematics 10', 1),
+('SCI11', 'Science 11', 2),
+('ENG12', 'English 12', 3);
+
+-- Enrollment (students into subjects)
+INSERT INTO Enrollment (StudentID, SubjectID) VALUES
+(1, 1), (2, 1), -- Alice & Brian in Math 10
+(3, 2), (4, 2), -- Carla & David in Science 11
+(5, 3), (6, 3); -- Ella & Felix in English 12
