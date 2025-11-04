@@ -2,7 +2,7 @@
 {
     public class AttendanceRequest
     {
-        public int StudentNumber { get; set; }
+        public string StudentNumber { get; set; }
         public string PCNumber { get; set; }
         public string RoomNumber { get; set; }
     }

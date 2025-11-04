@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Thesis_Proto3.Models;
@@ -28,7 +29,7 @@ namespace Thesis_Proto3.Services
                 Password = password
             };
 
-            var response = await _httpClient.PostAsJsonAsync("api/auth/login", request);
+            var response = await _httpClient.PostAsJsonAsync("api/Auth/Login", request);
 
             if (response.IsSuccessStatusCode)
             {
@@ -51,19 +52,20 @@ namespace Thesis_Proto3.Services
             return new List<Subject>();
         }
 
-        public async Task<int> RecordAttendanceAsync(AttendanceRequest request)
+        public async Task<ApiResponse> RecordAttendanceAsync(AttendanceRequest request)
         {
-            var response = await _httpClient.PostAsJsonAsync("api/attendance/login", request);
+            var response = await _httpClient.PostAsJsonAsync("api/Attendance/login", request);
 
-            if (response.IsSuccessStatusCode)
+            // Read raw JSON
+            var jsonString = await response.Content.ReadAsStringAsync();
+
+            // Deserialize using System.Text.Json
+            var apiResponse = JsonSerializer.Deserialize<ApiResponse>(jsonString, new JsonSerializerOptions
             {
-                return await response.Content.ReadFromJsonAsync<int>();
-            }
+                PropertyNameCaseInsensitive = true // matches JSON like "Success" to C# property "Success"
+            });
 
-            // Extract error from API (BadRequest)
-            var error = await response.Content.ReadFromJsonAsync<ApiError>();
-            throw new ApiException(error?.Error ?? "Unknown error from server.");
-
+            return apiResponse;
         }
         public async Task<bool> UpdateLogOffTimeAsync(int logId)
         {

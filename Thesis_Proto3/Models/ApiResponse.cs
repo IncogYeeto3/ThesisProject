@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Thesis_Proto3.Models
 {
-    class LoginRequest
+    public class ApiResponse
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public bool Success { get; set; }
+        public int LogID { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

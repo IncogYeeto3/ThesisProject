@@ -76,36 +76,37 @@ namespace Thesis_Proto3
                     {
                         StudentNumber = user.Number,
                         PCNumber = "COLLEGELAB-13",   // TODO: replace with real PC number
-                        RoomNumber = "COLLEGELAB"  // TODO: replace with real room number
+                        RoomNumber = "COLLEGELAB"     // TODO: replace with real room number
                     };
 
-                    int logId = await api.RecordAttendanceAsync(attendanceRequest);
+                    // Make the API call and expect a structured response
+                    ApiResponse response = await api.RecordAttendanceAsync(attendanceRequest);
 
-                    if (logId <= 0)
+                    // Check if the API returned success
+                    if (!response.Success)
                     {
-                        MessageBox.Show("No valid Schedule/Override Found, please contact MIS", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(response.ErrorMessage ?? "No valid Schedule/Override Found, please contact MIS",
+                            "Attendance Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
+                    int logId = response.LogID;
+
                     MessageBox.Show($"Attendance recorded! LogID = {logId}",
-                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
+                    // Open the student form with the logId
                     StudentForm frm = new StudentForm(user, logId);
                     frm.Show();
                     this.Hide();
                 }
-                catch (ApiException ex)
-                {
-                    // API returned a bad request (SQL RAISERROR bubbled up)
-                    MessageBox.Show(ex.Message, "Attendance Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
                 catch (Exception ex)
                 {
-                    // Some unexpected error (network, serialization, etc.)
+                    // Handle unexpected errors (network, deserialization, etc.)
                     MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
             else if (user.Role == "Employee") // Teacher
             {
                 MessageBox.Show($"Welcome Teacher-{user.Number}!");

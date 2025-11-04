@@ -50,4 +50,42 @@ public class AttendanceRepository : IAttendanceRepository
             commandType: CommandType.StoredProcedure
         );
     }
+
+    public async Task<int?> GetStudentIdByNumberAsync(string studentNumber)
+    {
+        return await _db.QuerySingleOrDefaultAsync<int?>(
+            "sp_GetStudentIdByNumber",
+            new { studentNumber },
+            commandType: CommandType.StoredProcedure
+        );
+    }
+
+    public async Task<int?> GetLatestEnrollmentIdAsync(int studentId)
+    {
+        return await _db.QuerySingleOrDefaultAsync<int?>(
+            "sp_GetLatestEnrollmentId",
+            new { studentId },
+            commandType: CommandType.StoredProcedure
+        );
+    }
+
+    public async Task<int?> GetValidScheduleAsync(int enrollmentId, int studentId, DateTime today, TimeSpan now, string todayCode)
+    {
+        return await _db.QuerySingleOrDefaultAsync<int?>(
+            "sp_GetValidScheduleForStudent",
+            new { enrollmentId, studentId, today, now, todayCode },
+            commandType: CommandType.StoredProcedure
+        );
+    }
+
+    public async Task<int> LogStudentAttendanceAsync(int studentId, int scheduleId, string pcNumber, string roomNumber, DateTime logDate, TimeSpan logOnTime)
+    {
+        return await _db.ExecuteScalarAsync<int>(
+            "sp_LogStudentAttendance",
+            new { studentId, scheduleId, pcNumber, roomNumber, logDate, logOnTime },
+            commandType: CommandType.StoredProcedure
+        );
+    }
+
+
 }
