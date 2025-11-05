@@ -30,6 +30,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.USTACLogo = new System.Windows.Forms.PictureBox();
+            this.BtnToggleTime = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.panelLogin.SuspendLayout();
             this.HeaderPanel.SuspendLayout();
             this.panelHeader.SuspendLayout();
@@ -172,6 +174,29 @@
             this.USTACLogo.TabIndex = 0;
             this.USTACLogo.TabStop = false;
             // 
+            // BtnToggleTime
+            // 
+            this.BtnToggleTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnToggleTime.Location = new System.Drawing.Point(702, 448);
+            this.BtnToggleTime.Name = "BtnToggleTime";
+            this.BtnToggleTime.Size = new System.Drawing.Size(103, 45);
+            this.BtnToggleTime.TabIndex = 9;
+            this.BtnToggleTime.Text = "Using Real Time";
+            this.BtnToggleTime.UseVisualStyleBackColor = true;
+            this.BtnToggleTime.Click += new System.EventHandler(this.BtnToggleTime_Click);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(698, 424);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 21);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Debug: Time";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,6 +204,8 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(817, 505);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.BtnToggleTime);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -196,6 +223,7 @@
             this.panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.USTACLogo)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -212,6 +240,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox USTACLogo;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button BtnToggleTime;
+        private System.Windows.Forms.Label label3;
     }
 }
 

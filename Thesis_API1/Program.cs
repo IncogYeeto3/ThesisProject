@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using Thesis_API1;
 using Thesis_API1.Models;
 using Thesis_API1.Repositories;
 
@@ -63,3 +64,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.Run();
+
+

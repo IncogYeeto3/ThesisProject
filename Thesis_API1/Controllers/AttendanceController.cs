@@ -27,16 +27,30 @@ public class AttendanceController : Controller
             if (enrollmentId == null)
                 return Ok(new ApiResponse { Success = false, LogID = 0, ErrorMessage = "No enrollment found for student." });
 
-            var today = new DateTime(2025, 10, 18);
-            var now = new TimeSpan(10, 00, 00);
+            // Use real or overridden date/time
+            var today = request.OverrideDate ?? DateTime.Now.Date;
+            var now = request.OverrideTime ?? DateTime.Now.TimeOfDay;
+
+                
             var todayCode = GetTodayCode(today.DayOfWeek);
 
             var scheduleId = await _attendanceRepo.GetValidScheduleAsync(enrollmentId.Value, studentId.Value, today, now, todayCode);
 
-            if (scheduleId == null || scheduleId == 0)
+            var logId = 0;
+
+            if (scheduleId == 0)
+            {
+                logId = await _attendanceRepo.LogStudentAttendanceAsync(studentId.Value, scheduleId.Value, request.PCNumber, request.RoomNumber, today, now);
+
+                return Ok(new ApiResponse { Success = true, LogID = 0, ErrorMessage = "Using Override to login" });
+            }
+
+                
+
+            if (scheduleId == null)
                 return Ok(new ApiResponse { Success = false, LogID = 0, ErrorMessage = "No valid schedule or override for this time." });
 
-            var logId = await _attendanceRepo.LogStudentAttendanceAsync(studentId.Value, scheduleId.Value, request.PCNumber, request.RoomNumber, today, now);
+            logId = await _attendanceRepo.LogStudentAttendanceAsync(studentId.Value, scheduleId.Value, request.PCNumber, request.RoomNumber, today, now);
             return Ok(new ApiResponse { Success = true, LogID = logId });
         }
         catch (SqlException ex)

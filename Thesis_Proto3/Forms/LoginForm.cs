@@ -21,12 +21,15 @@ namespace Thesis_Proto3
 {
     public partial class LoginForm : Form
     {
+        private bool isSimulationMode = false;
+
         public LoginForm()
         {
             InitializeComponent();
             // Make btnLogin have rounded corners
             GraphicsPath path = new GraphicsPath();
             int radius = 15; // corner roundness
+
 
             path.AddArc(0, 0, radius, radius, 180, 90); // top-left
             path.AddArc(btnLogin.Width - radius, 0, radius, radius, 270, 90); // top-right
@@ -78,6 +81,13 @@ namespace Thesis_Proto3
                         PCNumber = "COLLEGELAB-13",   // TODO: replace with real PC number
                         RoomNumber = "COLLEGELAB"     // TODO: replace with real room number
                     };
+
+                    // If simulation mode is active, override date/time
+                    if (isSimulationMode)
+                    {
+                        attendanceRequest.OverrideDate = new DateTime(2025, 10, 18);  // Pretend it's Oct 18, 2025
+                        attendanceRequest.OverrideTime = new TimeSpan(10, 0, 0);      // Pretend it's 10:00 AM
+                    }
 
                     // Make the API call and expect a structured response
                     ApiResponse response = await api.RecordAttendanceAsync(attendanceRequest);
@@ -180,5 +190,20 @@ namespace Thesis_Proto3
             }
         }
 
+        private void BtnToggleTime_Click(object sender, EventArgs e)
+        {
+            isSimulationMode = !isSimulationMode;
+
+            if (isSimulationMode)
+            {
+                BtnToggleTime.Text = "Assuming CompLab Time";
+                // Enable date/time controls, or lock them to Oct 18
+            }
+            else
+            {
+                BtnToggleTime.Text = "Using Real Time";
+                // Hide or disable date/time inputs
+            }
+        }
     }
 }
