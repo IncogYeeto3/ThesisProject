@@ -42,7 +42,7 @@ public class AttendanceController : Controller
             {
                 logId = await _attendanceRepo.LogStudentAttendanceAsync(studentId.Value, scheduleId.Value, request.PCNumber, request.RoomNumber, today, now);
 
-                return Ok(new ApiResponse { Success = true, LogID = 0, ErrorMessage = "Using Override to login" });
+                return Ok(new ApiResponse { Success = true, LogID = logId, ErrorMessage = "Using Override to login" });
             }
 
                 
