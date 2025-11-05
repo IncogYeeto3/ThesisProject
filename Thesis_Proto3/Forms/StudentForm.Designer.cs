@@ -40,6 +40,7 @@ namespace Thesis_Proto3
             this.label4 = new System.Windows.Forms.Label();
             this.HeaderPanel = new System.Windows.Forms.Panel();
             this.HeaderLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.USTACLogo)).BeginInit();
             this.panelLogin.SuspendLayout();
@@ -56,7 +57,7 @@ namespace Thesis_Proto3
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(207, 38);
             this.btnLogOut.TabIndex = 12;
-            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.Text = "Continue";
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
@@ -117,6 +118,7 @@ namespace Thesis_Proto3
             // panelLogin
             // 
             this.panelLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelLogin.Controls.Add(this.label1);
             this.panelLogin.Controls.Add(this.label4);
             this.panelLogin.Controls.Add(this.HeaderPanel);
             this.panelLogin.Controls.Add(this.btnLogOut);
@@ -132,7 +134,7 @@ namespace Thesis_Proto3
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(94, 94);
+            this.label4.Location = new System.Drawing.Point(94, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 21);
             this.label4.TabIndex = 9;
@@ -163,6 +165,20 @@ namespace Thesis_Proto3
             this.HeaderLabel.Text = "ATTENDANCE TRACKER";
             this.HeaderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(37, 162);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(320, 19);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Your login has been authenticated successfully.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,9 +187,10 @@ namespace Thesis_Proto3
             this.ClientSize = new System.Drawing.Size(817, 507);
             this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.panelHeader);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StudentForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form2";
+            this.Text = "Student Form";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StudentForm_FormClosing);
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -198,5 +215,6 @@ namespace Thesis_Proto3
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel HeaderPanel;
         private System.Windows.Forms.Label HeaderLabel;
+        private System.Windows.Forms.Label label1;
     }
 }

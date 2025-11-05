@@ -33,6 +33,7 @@
             this.txtStartTime = new System.Windows.Forms.TextBox();
             this.txtStudentNumber = new System.Windows.Forms.TextBox();
             this.panelLogin = new System.Windows.Forms.Panel();
+            this.txtEndTime = new System.Windows.Forms.TextBox();
             this.txtOverrideDate = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.USTACLogo = new System.Windows.Forms.PictureBox();
-            this.txtEndTime = new System.Windows.Forms.TextBox();
             this.panelLogin.SuspendLayout();
             this.HeaderPanel.SuspendLayout();
             this.panelHeader.SuspendLayout();
@@ -55,9 +55,9 @@
             this.btnSubmit.FlatAppearance.BorderSize = 0;
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.Location = new System.Drawing.Point(128, 306);
+            this.btnSubmit.Location = new System.Drawing.Point(70, 349);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(159, 37);
+            this.btnSubmit.Size = new System.Drawing.Size(264, 37);
             this.btnSubmit.TabIndex = 2;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = false;
@@ -66,7 +66,7 @@
             // txtStartTime
             // 
             this.txtStartTime.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStartTime.Location = new System.Drawing.Point(70, 222);
+            this.txtStartTime.Location = new System.Drawing.Point(70, 246);
             this.txtStartTime.Name = "txtStartTime";
             this.txtStartTime.Size = new System.Drawing.Size(264, 36);
             this.txtStartTime.TabIndex = 8;
@@ -74,7 +74,7 @@
             // txtStudentNumber
             // 
             this.txtStudentNumber.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStudentNumber.Location = new System.Drawing.Point(70, 138);
+            this.txtStudentNumber.Location = new System.Drawing.Point(70, 155);
             this.txtStudentNumber.Name = "txtStudentNumber";
             this.txtStudentNumber.Size = new System.Drawing.Size(264, 36);
             this.txtStudentNumber.TabIndex = 7;
@@ -95,10 +95,18 @@
             this.panelLogin.Size = new System.Drawing.Size(400, 422);
             this.panelLogin.TabIndex = 11;
             // 
+            // txtEndTime
+            // 
+            this.txtEndTime.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEndTime.Location = new System.Drawing.Point(70, 291);
+            this.txtEndTime.Name = "txtEndTime";
+            this.txtEndTime.Size = new System.Drawing.Size(264, 36);
+            this.txtEndTime.TabIndex = 13;
+            // 
             // txtOverrideDate
             // 
             this.txtOverrideDate.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOverrideDate.Location = new System.Drawing.Point(70, 180);
+            this.txtOverrideDate.Location = new System.Drawing.Point(70, 203);
             this.txtOverrideDate.Name = "txtOverrideDate";
             this.txtOverrideDate.Size = new System.Drawing.Size(264, 36);
             this.txtOverrideDate.TabIndex = 12;
@@ -107,7 +115,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(179, 75);
+            this.label7.Location = new System.Drawing.Point(179, 82);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 21);
             this.label7.TabIndex = 11;
@@ -203,14 +211,6 @@
             this.USTACLogo.TabIndex = 0;
             this.USTACLogo.TabStop = false;
             // 
-            // txtEndTime
-            // 
-            this.txtEndTime.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEndTime.Location = new System.Drawing.Point(70, 264);
-            this.txtEndTime.Name = "txtEndTime";
-            this.txtEndTime.Size = new System.Drawing.Size(264, 36);
-            this.txtEndTime.TabIndex = 13;
-            // 
             // SitInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,9 +219,10 @@
             this.ClientSize = new System.Drawing.Size(820, 641);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelLogin);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SitInForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SitInForm";
+            this.Text = "Sit In Form";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.SitInForm_Load);
             this.panelLogin.ResumeLayout(false);
