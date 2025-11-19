@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SitInForm));
             this.btnSubmit = new System.Windows.Forms.Button();
-            this.txtStartTime = new System.Windows.Forms.TextBox();
             this.txtStudentNumber = new System.Windows.Forms.TextBox();
             this.panelLogin = new System.Windows.Forms.Panel();
-            this.txtEndTime = new System.Windows.Forms.TextBox();
-            this.txtOverrideDate = new System.Windows.Forms.TextBox();
+            this.dtpEndTime = new System.Windows.Forms.DateTimePicker();
+            this.dtpStartTime = new System.Windows.Forms.DateTimePicker();
+            this.dtpOverrideDate = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.HeaderPanel = new System.Windows.Forms.Panel();
@@ -43,6 +43,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.USTACLogo = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panelLogin.SuspendLayout();
             this.HeaderPanel.SuspendLayout();
             this.panelHeader.SuspendLayout();
@@ -55,7 +58,7 @@
             this.btnSubmit.FlatAppearance.BorderSize = 0;
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.Location = new System.Drawing.Point(70, 349);
+            this.btnSubmit.Location = new System.Drawing.Point(70, 367);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(264, 37);
             this.btnSubmit.TabIndex = 2;
@@ -63,18 +66,10 @@
             this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // txtStartTime
-            // 
-            this.txtStartTime.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStartTime.Location = new System.Drawing.Point(70, 246);
-            this.txtStartTime.Name = "txtStartTime";
-            this.txtStartTime.Size = new System.Drawing.Size(264, 36);
-            this.txtStartTime.TabIndex = 8;
-            // 
             // txtStudentNumber
             // 
             this.txtStudentNumber.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStudentNumber.Location = new System.Drawing.Point(70, 155);
+            this.txtStudentNumber.Location = new System.Drawing.Point(70, 138);
             this.txtStudentNumber.Name = "txtStudentNumber";
             this.txtStudentNumber.Size = new System.Drawing.Size(264, 36);
             this.txtStudentNumber.TabIndex = 7;
@@ -82,9 +77,12 @@
             // panelLogin
             // 
             this.panelLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panelLogin.Controls.Add(this.txtEndTime);
-            this.panelLogin.Controls.Add(this.txtStartTime);
-            this.panelLogin.Controls.Add(this.txtOverrideDate);
+            this.panelLogin.Controls.Add(this.label3);
+            this.panelLogin.Controls.Add(this.label2);
+            this.panelLogin.Controls.Add(this.label1);
+            this.panelLogin.Controls.Add(this.dtpEndTime);
+            this.panelLogin.Controls.Add(this.dtpStartTime);
+            this.panelLogin.Controls.Add(this.dtpOverrideDate);
             this.panelLogin.Controls.Add(this.label7);
             this.panelLogin.Controls.Add(this.label4);
             this.panelLogin.Controls.Add(this.HeaderPanel);
@@ -95,27 +93,43 @@
             this.panelLogin.Size = new System.Drawing.Size(400, 422);
             this.panelLogin.TabIndex = 11;
             // 
-            // txtEndTime
+            // dtpEndTime
             // 
-            this.txtEndTime.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEndTime.Location = new System.Drawing.Point(70, 291);
-            this.txtEndTime.Name = "txtEndTime";
-            this.txtEndTime.Size = new System.Drawing.Size(264, 36);
-            this.txtEndTime.TabIndex = 13;
+            this.dtpEndTime.CalendarFont = new System.Drawing.Font("Consolas", 18F);
+            this.dtpEndTime.Font = new System.Drawing.Font("Consolas", 18F);
+            this.dtpEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEndTime.Location = new System.Drawing.Point(164, 264);
+            this.dtpEndTime.Name = "dtpEndTime";
+            this.dtpEndTime.ShowUpDown = true;
+            this.dtpEndTime.Size = new System.Drawing.Size(201, 36);
+            this.dtpEndTime.TabIndex = 17;
             // 
-            // txtOverrideDate
+            // dtpStartTime
             // 
-            this.txtOverrideDate.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOverrideDate.Location = new System.Drawing.Point(70, 203);
-            this.txtOverrideDate.Name = "txtOverrideDate";
-            this.txtOverrideDate.Size = new System.Drawing.Size(264, 36);
-            this.txtOverrideDate.TabIndex = 12;
+            this.dtpStartTime.CalendarFont = new System.Drawing.Font("Consolas", 18F);
+            this.dtpStartTime.Font = new System.Drawing.Font("Consolas", 18F);
+            this.dtpStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpStartTime.Location = new System.Drawing.Point(164, 222);
+            this.dtpStartTime.Name = "dtpStartTime";
+            this.dtpStartTime.ShowUpDown = true;
+            this.dtpStartTime.Size = new System.Drawing.Size(201, 36);
+            this.dtpStartTime.TabIndex = 16;
+            // 
+            // dtpOverrideDate
+            // 
+            this.dtpOverrideDate.CalendarFont = new System.Drawing.Font("Consolas", 18F);
+            this.dtpOverrideDate.Font = new System.Drawing.Font("Consolas", 18F);
+            this.dtpOverrideDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpOverrideDate.Location = new System.Drawing.Point(164, 180);
+            this.dtpOverrideDate.Name = "dtpOverrideDate";
+            this.dtpOverrideDate.Size = new System.Drawing.Size(201, 36);
+            this.dtpOverrideDate.TabIndex = 15;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(179, 82);
+            this.label7.Location = new System.Drawing.Point(177, 72);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 21);
             this.label7.TabIndex = 11;
@@ -126,7 +140,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(104, 114);
+            this.label4.Location = new System.Drawing.Point(106, 93);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(197, 21);
             this.label4.TabIndex = 9;
@@ -211,6 +225,40 @@
             this.USTACLogo.TabIndex = 0;
             this.USTACLogo.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label1.Location = new System.Drawing.Point(67, 180);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Override Date";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(66, 233);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 21);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Start Time";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(66, 275);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 21);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "EndTime";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // SitInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,7 +272,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sit In Form";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.SitInForm_Load);
             this.panelLogin.ResumeLayout(false);
             this.panelLogin.PerformLayout();
             this.HeaderPanel.ResumeLayout(false);
@@ -239,7 +286,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.TextBox txtStartTime;
         private System.Windows.Forms.TextBox txtStudentNumber;
         private System.Windows.Forms.Panel panelLogin;
         private System.Windows.Forms.Label label4;
@@ -250,7 +296,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox USTACLogo;
-        private System.Windows.Forms.TextBox txtOverrideDate;
-        private System.Windows.Forms.TextBox txtEndTime;
+        private System.Windows.Forms.DateTimePicker dtpOverrideDate;
+        private System.Windows.Forms.DateTimePicker dtpStartTime;
+        private System.Windows.Forms.DateTimePicker dtpEndTime;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
