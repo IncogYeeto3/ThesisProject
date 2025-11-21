@@ -12,20 +12,6 @@ public class AttendanceRepository : IAttendanceRepository
         _db = db;
     }
 
-    public async Task<int> ValidateStudentAttendanceAsync(AttendanceRequest request)
-    {
-        return await _db.ExecuteScalarAsync<int>(
-            "sp_ValidateStudentAttendance",
-            new
-            {
-                studentNumber = request.StudentNumber,
-                pcNumber = request.PCNumber,
-                roomNumber = request.RoomNumber
-            },
-            commandType: CommandType.StoredProcedure
-        );
-    }
-
     public async Task UpdateLogOffTimeAsync(int logId)
     {
         await _db.ExecuteAsync(
