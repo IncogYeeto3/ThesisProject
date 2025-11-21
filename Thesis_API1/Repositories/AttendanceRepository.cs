@@ -73,5 +73,32 @@ public class AttendanceRepository : IAttendanceRepository
         );
     }
 
+    public async Task<(int TotalCount, List<AttendanceRecord> Records)> GetAttendanceAsync(AttendanceFilterRequest filter)
+    {
+        var parameters = new DynamicParameters();
+        parameters.Add("@IsAdmin", filter.IsAdmin);
+        parameters.Add("@TeacherNumber", filter.TeacherNumber);
+        parameters.Add("@StudentNumber", filter.StudentNumber);
+        parameters.Add("@StudentName", filter.StudentName);
+        parameters.Add("@SubjectCode", filter.SubjectCode);
+        parameters.Add("@SubjectName", filter.SubjectName);
+        parameters.Add("@PCNumber", filter.PCNumber);
+        parameters.Add("@RoomNumber", filter.RoomNumber);
+        parameters.Add("@StartDate", filter.StartDate);
+        parameters.Add("@EndDate", filter.EndDate);
+        parameters.Add("@Page", filter.Page);
+        parameters.Add("@PageSize", filter.PageSize);
 
+        // Execute stored procedure and get multiple results
+        using var multi = await _db.QueryMultipleAsync(
+            "sp_GetAttendance_Universal",
+            parameters,
+            commandType: System.Data.CommandType.StoredProcedure
+        );
+
+        int totalCount = multi.ReadFirst<int>();
+        var records = multi.Read<AttendanceRecord>().ToList();
+
+        return (totalCount, records);
+    }
 }

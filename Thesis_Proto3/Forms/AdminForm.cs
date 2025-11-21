@@ -76,6 +76,8 @@ namespace Thesis_Proto3.Forms
             _isViewingStudents = false;
         }
 
+
+        //TODO UPDATE THIS
         private async void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -157,11 +159,7 @@ namespace Thesis_Proto3.Forms
             return table;
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        //TODO UPDATE THIS 
         private async void btnDateSubmit_Click(object sender, EventArgs e)
         {
             try

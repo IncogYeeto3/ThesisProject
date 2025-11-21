@@ -85,8 +85,8 @@ namespace Thesis_Proto3
                     // If simulation mode is active, override date/time
                     if (isSimulationMode)
                     {
-                        attendanceRequest.OverrideDate = new DateTime(2025, 10, 18);  // Pretend it's Oct 18, 2025
-                        attendanceRequest.OverrideTime = new TimeSpan(10, 0, 0);      // Pretend it's 10:00 AM
+                        attendanceRequest.OverrideDate = new DateTime(2025, 10, 14);  // Pretend it's Oct 18, 2025
+                        attendanceRequest.OverrideTime = new TimeSpan(13, 0, 0);      // Pretend it's 10:00 AM
                     }
 
                     // Make the API call and expect a structured response

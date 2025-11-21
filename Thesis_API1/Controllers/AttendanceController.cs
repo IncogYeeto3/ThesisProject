@@ -30,27 +30,30 @@ public class AttendanceController : Controller
             // Use real or overridden date/time
             var today = request.OverrideDate ?? DateTime.Now.Date;
             var now = request.OverrideTime ?? DateTime.Now.TimeOfDay;
-
-                
             var todayCode = GetTodayCode(today.DayOfWeek);
 
-            var scheduleId = await _attendanceRepo.GetValidScheduleAsync(enrollmentId.Value, studentId.Value, today, now, todayCode);
-
-            var logId = 0;
-
-            if (scheduleId == 0)
-            {
-                logId = await _attendanceRepo.LogStudentAttendanceAsync(studentId.Value, scheduleId.Value, request.PCNumber, request.RoomNumber, today, now);
-
-                return Ok(new ApiResponse { Success = true, LogID = logId, ErrorMessage = "Using Override to login" });
-            }
-
-                
+            // Always returns a real schedule ID (normal or override), or null
+            var scheduleId = await _attendanceRepo.GetValidScheduleAsync(
+                enrollmentId.Value,
+                studentId.Value,
+                today,
+                now,
+                todayCode
+            );
 
             if (scheduleId == null)
-                return Ok(new ApiResponse { Success = false, LogID = 0, ErrorMessage = "No valid schedule or override for this time." });
+                return Ok(new ApiResponse { Success = false, LogID = 0, ErrorMessage = "No valid schedule for this time." });
 
-            logId = await _attendanceRepo.LogStudentAttendanceAsync(studentId.Value, scheduleId.Value, request.PCNumber, request.RoomNumber, today, now);
+            // No more "0" logic — scheduleId is always valid here
+            var logId = await _attendanceRepo.LogStudentAttendanceAsync(
+                studentId.Value,
+                scheduleId.Value,
+                request.PCNumber,
+                request.RoomNumber,
+                today,
+                now
+            );
+
             return Ok(new ApiResponse { Success = true, LogID = logId });
         }
         catch (SqlException ex)
@@ -58,6 +61,7 @@ public class AttendanceController : Controller
             return Ok(new ApiResponse { Success = false, LogID = 0, ErrorMessage = ex.Message });
         }
     }
+
 
 
     [HttpPut("{logId}/logoff")]
@@ -81,6 +85,18 @@ public class AttendanceController : Controller
             return BadRequest(new { error = ex.Message });
         }
     }
+
+    [HttpPost("search")]
+    public async Task<IActionResult> GetAttendance([FromBody] AttendanceFilterRequest filter)
+    {
+        var (totalCount, records) = await _attendanceRepo.GetAttendanceAsync(filter);
+        return Ok(new
+        {
+            TotalCount = totalCount,
+            Records = records
+        });
+    }
+
 
     private string GetTodayCode(DayOfWeek day)
     {
