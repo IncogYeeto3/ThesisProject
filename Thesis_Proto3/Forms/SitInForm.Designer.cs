@@ -32,6 +32,9 @@
             this.btnSubmit = new System.Windows.Forms.Button();
             this.txtStudentNumber = new System.Windows.Forms.TextBox();
             this.panelLogin = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.dtpEndTime = new System.Windows.Forms.DateTimePicker();
             this.dtpStartTime = new System.Windows.Forms.DateTimePicker();
             this.dtpOverrideDate = new System.Windows.Forms.DateTimePicker();
@@ -43,9 +46,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.USTACLogo = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panelLogin.SuspendLayout();
             this.HeaderPanel.SuspendLayout();
             this.panelHeader.SuspendLayout();
@@ -58,7 +59,7 @@
             this.btnSubmit.FlatAppearance.BorderSize = 0;
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.Location = new System.Drawing.Point(70, 367);
+            this.btnSubmit.Location = new System.Drawing.Point(70, 325);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(264, 37);
             this.btnSubmit.TabIndex = 2;
@@ -77,6 +78,7 @@
             // panelLogin
             // 
             this.panelLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelLogin.Controls.Add(this.btnClose);
             this.panelLogin.Controls.Add(this.label3);
             this.panelLogin.Controls.Add(this.label2);
             this.panelLogin.Controls.Add(this.label1);
@@ -92,6 +94,40 @@
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(400, 422);
             this.panelLogin.TabIndex = 11;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(66, 275);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 21);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "EndTime";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(66, 233);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 21);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Start Time";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label1.Location = new System.Drawing.Point(67, 180);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Override Date";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // dtpEndTime
             // 
@@ -225,39 +261,19 @@
             this.USTACLogo.TabIndex = 0;
             this.USTACLogo.TabStop = false;
             // 
-            // label1
+            // btnClose
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label1.Location = new System.Drawing.Point(67, 180);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 13);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Override Date";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(66, 233);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 21);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Start Time";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(66, 275);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 21);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "EndTime";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(70, 368);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(264, 37);
+            this.btnClose.TabIndex = 21;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // SitInForm
             // 
@@ -302,5 +318,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnClose;
     }
 }

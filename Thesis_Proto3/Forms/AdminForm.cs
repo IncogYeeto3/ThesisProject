@@ -98,79 +98,6 @@ namespace Thesis_Proto3.Forms
             }
         }
 
-        private async void btnDaily_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DateTime today = DateTime.Today;
-
-                int? subjectId = (int)cmbSubject.SelectedValue;
-                if (subjectId == 0) subjectId = null;
-
-                var attendance = await _api.GetAttendanceByAdminRange(
-                    today, today, subjectId);
-
-                dgv.DataSource = ToDataTable(attendance);
-                dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading daily report: " + ex.Message);
-            }
-
-            _isViewingStudents = false;
-        }
-
-        private async void btnWeekly_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DateTime today = DateTime.Today;
-                DateTime startOfWeek = today.AddDays(-(int)today.DayOfWeek); // Sunday
-                DateTime endOfWeek = startOfWeek.AddDays(6);
-
-                int? subjectId = (int)cmbSubject.SelectedValue;
-                if (subjectId == 0) subjectId = null;
-
-                var attendance = await _api.GetAttendanceByAdminRange(
-                    startOfWeek, endOfWeek, subjectId);
-
-                dgv.DataSource = ToDataTable(attendance);
-                dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading weekly report: " + ex.Message);
-            }
-
-            _isViewingStudents = false;
-        }
-
-        private async void btnMonthly_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DateTime today = DateTime.Today;
-                DateTime startOfMonth = new DateTime(today.Year, today.Month, 1);
-                DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
-
-                int? subjectId = (int)cmbSubject.SelectedValue;
-                if (subjectId == 0) subjectId = null;
-
-                var attendance = await _api.GetAttendanceByAdminRange(
-                    startOfMonth, endOfMonth, subjectId);
-
-                dgv.DataSource = ToDataTable(attendance);
-                dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading monthly report: " + ex.Message);
-            }
-
-            _isViewingStudents = false;
-        }
-
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             //var loginForm = Application.OpenForms["LoginForm"] as LoginForm;
@@ -186,7 +113,6 @@ namespace Thesis_Proto3.Forms
 
             this.Close();
         }
-
 
         private void dgv_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -234,6 +160,30 @@ namespace Thesis_Proto3.Forms
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private async void btnDateSubmit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime startOfMonth = dtpStartDate.Value;
+                DateTime endOfMonth = dtpEndDate.Value;
+
+                int? subjectId = (int)cmbSubject.SelectedValue;
+                if (subjectId == 0) subjectId = null;
+
+                var attendance = await _api.GetAttendanceByAdminRange(
+                    startOfMonth, endOfMonth, subjectId);
+
+                dgv.DataSource = ToDataTable(attendance);
+                dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading monthly report: " + ex.Message);
+            }
+
+            _isViewingStudents = false;
         }
     }
 }

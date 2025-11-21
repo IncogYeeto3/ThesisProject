@@ -35,9 +35,6 @@
             this.btnViewAttendance = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbSubject = new System.Windows.Forms.ComboBox();
-            this.btnMonthly = new System.Windows.Forms.Button();
-            this.btnWeekly = new System.Windows.Forms.Button();
-            this.btnDaily = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,6 +43,11 @@
             this.USTACLogo = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnDateSubmit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.USTACLogo)).BeginInit();
@@ -73,7 +75,7 @@
             // dgv
             // 
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Location = new System.Drawing.Point(49, 76);
+            this.dgv.Location = new System.Drawing.Point(49, 120);
             this.dgv.Name = "dgv";
             this.dgv.Size = new System.Drawing.Size(1261, 375);
             this.dgv.TabIndex = 8;
@@ -133,45 +135,6 @@
             this.cmbSubject.Name = "cmbSubject";
             this.cmbSubject.Size = new System.Drawing.Size(170, 36);
             this.cmbSubject.TabIndex = 15;
-            // 
-            // btnMonthly
-            // 
-            this.btnMonthly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
-            this.btnMonthly.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMonthly.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMonthly.Location = new System.Drawing.Point(301, 17);
-            this.btnMonthly.Name = "btnMonthly";
-            this.btnMonthly.Size = new System.Drawing.Size(108, 40);
-            this.btnMonthly.TabIndex = 14;
-            this.btnMonthly.Text = "Monthly";
-            this.btnMonthly.UseVisualStyleBackColor = false;
-            this.btnMonthly.Click += new System.EventHandler(this.btnMonthly_Click);
-            // 
-            // btnWeekly
-            // 
-            this.btnWeekly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
-            this.btnWeekly.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWeekly.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWeekly.Location = new System.Drawing.Point(175, 17);
-            this.btnWeekly.Name = "btnWeekly";
-            this.btnWeekly.Size = new System.Drawing.Size(108, 40);
-            this.btnWeekly.TabIndex = 13;
-            this.btnWeekly.Text = "Weekly";
-            this.btnWeekly.UseVisualStyleBackColor = false;
-            this.btnWeekly.Click += new System.EventHandler(this.btnWeekly_Click);
-            // 
-            // btnDaily
-            // 
-            this.btnDaily.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
-            this.btnDaily.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDaily.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDaily.Location = new System.Drawing.Point(49, 17);
-            this.btnDaily.Name = "btnDaily";
-            this.btnDaily.Size = new System.Drawing.Size(108, 40);
-            this.btnDaily.TabIndex = 12;
-            this.btnDaily.Text = "Daily";
-            this.btnDaily.UseVisualStyleBackColor = false;
-            this.btnDaily.Click += new System.EventHandler(this.btnDaily_Click);
             // 
             // btnLogOut
             // 
@@ -276,17 +239,76 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnDateSubmit);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.dtpEndDate);
+            this.panel3.Controls.Add(this.dtpStartDate);
             this.panel3.Controls.Add(this.dgv);
             this.panel3.Controls.Add(this.cmbSubject);
-            this.panel3.Controls.Add(this.btnDaily);
-            this.panel3.Controls.Add(this.btnMonthly);
-            this.panel3.Controls.Add(this.btnWeekly);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(205, 82);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1351, 609);
             this.panel3.TabIndex = 19;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // dtpStartDate
+            // 
+            this.dtpStartDate.CalendarFont = new System.Drawing.Font("Consolas", 18F);
+            this.dtpStartDate.Font = new System.Drawing.Font("Consolas", 18F);
+            this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStartDate.Location = new System.Drawing.Point(49, 34);
+            this.dtpStartDate.Name = "dtpStartDate";
+            this.dtpStartDate.Size = new System.Drawing.Size(201, 36);
+            this.dtpStartDate.TabIndex = 20;
+            // 
+            // dtpEndDate
+            // 
+            this.dtpEndDate.CalendarFont = new System.Drawing.Font("Consolas", 18F);
+            this.dtpEndDate.Font = new System.Drawing.Font("Consolas", 18F);
+            this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEndDate.Location = new System.Drawing.Point(256, 34);
+            this.dtpEndDate.Name = "dtpEndDate";
+            this.dtpEndDate.Size = new System.Drawing.Size(201, 36);
+            this.dtpEndDate.TabIndex = 21;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label5.Location = new System.Drawing.Point(46, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Start Date";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label6.Location = new System.Drawing.Point(253, 18);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "End Date";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // btnDateSubmit
+            // 
+            this.btnDateSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
+            this.btnDateSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDateSubmit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDateSubmit.Location = new System.Drawing.Point(463, 32);
+            this.btnDateSubmit.Name = "btnDateSubmit";
+            this.btnDateSubmit.Size = new System.Drawing.Size(108, 40);
+            this.btnDateSubmit.TabIndex = 24;
+            this.btnDateSubmit.Text = "Submit";
+            this.btnDateSubmit.UseVisualStyleBackColor = false;
+            this.btnDateSubmit.Click += new System.EventHandler(this.btnDateSubmit_Click);
             // 
             // AdminForm
             // 
@@ -309,6 +331,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -321,9 +344,6 @@
         private System.Windows.Forms.Button btnViewAttendance;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbSubject;
-        private System.Windows.Forms.Button btnMonthly;
-        private System.Windows.Forms.Button btnWeekly;
-        private System.Windows.Forms.Button btnDaily;
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
@@ -332,5 +352,10 @@
         private System.Windows.Forms.PictureBox USTACLogo;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DateTimePicker dtpEndDate;
+        private System.Windows.Forms.DateTimePicker dtpStartDate;
+        private System.Windows.Forms.Button btnDateSubmit;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }
