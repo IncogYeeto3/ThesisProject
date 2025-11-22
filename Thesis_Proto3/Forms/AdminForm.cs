@@ -39,7 +39,7 @@ namespace Thesis_Proto3.Forms
                 column.SortMode = DataGridViewColumnSortMode.Programmatic;
             }
 
-            btnResetFilter.PerformClick();
+            ResetFilterState();
             btnViewAttendance.PerformClick();
         }
 
@@ -56,25 +56,47 @@ namespace Thesis_Proto3.Forms
         private async void btnViewStudent_Click(object sender, EventArgs e)
         {
             _isViewingStudents = true;
-            btnResetFilter.PerformClick();
+            ResetFilterState();
 
-            var students = await _api.GetStudentsByAdminAsync();
+            
+            var filter = new StudentFilterRequest
+            {
+                IsAdmin = true,
+                Page = 1,
+                PageSize = 50,
+            };
 
-            dgv.DataSource = ToDataTable(students);
+            var result = await _api.GetStudentsAsync(filter);
+
+            dgv.DataSource = ToDataTable(result.Records);
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-           
         }
 
         private async void btnViewAttendance_Click(object sender, EventArgs e)
-        {          
-            btnResetFilter.PerformClick();
+        {
+            ResetFilterState();
             RefreshAttendanceData();
 
             _isViewingStudents = false;
         }
 
         //=====================================================================================
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            //var loginForm = Application.OpenForms["LoginForm"] as LoginForm;
+            //if (loginForm != null)
+            //{
+            //    loginForm.Show();
+            //    loginForm.ClearFields();
+            //}
+
+            LoginForm loginForm = new LoginForm();
+            loginForm.ClearFields();
+            loginForm.Show();
+
+            this.Close();
+        }
 
         private async void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -125,22 +147,6 @@ namespace Thesis_Proto3.Forms
             await RefreshAttendanceData();
         }
 
-        private void btnLogOut_Click(object sender, EventArgs e)
-        {
-            //var loginForm = Application.OpenForms["LoginForm"] as LoginForm;
-            //if (loginForm != null)
-            //{
-            //    loginForm.Show();
-            //    loginForm.ClearFields();
-            //}
-
-            LoginForm loginForm = new LoginForm();
-            loginForm.ClearFields();
-            loginForm.Show();
-
-            this.Close();
-        }
-
         private void dgv_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             string columnName = dgv.Columns[e.ColumnIndex].DataPropertyName;
@@ -165,37 +171,13 @@ namespace Thesis_Proto3.Forms
             _lastSortOrder = newSortOrder;
         }
 
-        private void btnResetFilter_Click(object sender, EventArgs e)
+        private async void btnResetFilter_Click(object sender, EventArgs e)
         {
             try
             {
-                // Reset your filter state
-                _filters = new AttendanceFilterRequest
-                {
-                    IsAdmin = true,
-                    StudentNumber = null,
-                    StudentName = null,
-                    SubjectCode = null,
-                    SubjectName = null,
-                    PCNumber = null,
-                    RoomNumber = null,
-                    StartDate = null,
-                    EndDate = null,
-                    Page = 1,
-                    PageSize = 50
-                };
-
-                // Reset WinForms controls
-                dtpStartDate.Value = DateTime.Today;
-                dtpEndDate.Value = DateTime.Today;
-
-                // Clear DataGridView
-                dgv.DataSource = null;
-
-                _isViewingStudents = false;
+                ResetFilterState();
                 DisplayActiveFilters();
-
-                if (_isViewingStudents==false)RefreshAttendanceData();
+                await RefreshAttendanceData();
             }
             catch (Exception ex)
             {
@@ -224,6 +206,30 @@ namespace Thesis_Proto3.Forms
         }
 
         //=====================================================================================
+
+        private void ResetFilterState()
+        {
+            _filters = new AttendanceFilterRequest
+            {
+                IsAdmin = true,
+                StudentNumber = null,
+                StudentName = null,
+                SubjectCode = null,
+                SubjectName = null,
+                PCNumber = null,
+                RoomNumber = null,
+                StartDate = null,
+                EndDate = null,
+                Page = 1,
+                PageSize = 50
+            };
+
+            dtpStartDate.Value = DateTime.Today;
+            dtpEndDate.Value = DateTime.Today;
+
+            flpFilters.Controls.Clear();
+            dgv.DataSource = null;
+        }
 
         private DataTable ToDataTable<T>(List<T> items)
         {
@@ -360,6 +366,5 @@ namespace Thesis_Proto3.Forms
             flpFilters.Controls.Add(lbl);
         }
 
-        
     }
 }

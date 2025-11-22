@@ -250,6 +250,22 @@ namespace Thesis_Proto3.Services
             return new List<Subject>();
         }
 
+        // ----------- GetStudent Methods -----------
+
+        public async Task<StudentPagedResponse> GetStudentsAsync(StudentFilterRequest request)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/student/search", request);
+
+            response.EnsureSuccessStatusCode();
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            return await response.Content.ReadFromJsonAsync<StudentPagedResponse>(options);
+        }
+
         // ----------- Attendance Methods -----------
 
 

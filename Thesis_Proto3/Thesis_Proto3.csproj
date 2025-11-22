@@ -133,6 +133,8 @@
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentFilterRequest.cs" />
+    <Compile Include="Models\StudentPagedResponse.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

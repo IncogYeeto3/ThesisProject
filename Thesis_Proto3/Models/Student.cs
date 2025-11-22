@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Thesis_Proto3.Models
 {
-    class Student
+    public class Student
     {
+        public int StudentID { get; set; }
         public int StudentNumber { get; set; }
         public string StudentName { get; set; }
         public int GradeLevel { get; set; }
