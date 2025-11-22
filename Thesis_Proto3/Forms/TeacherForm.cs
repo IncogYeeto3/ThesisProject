@@ -158,6 +158,52 @@ namespace Thesis_Proto3.Forms
 
         //=====================================================================================
 
+        private async void btnPageFirst_Click(object sender, EventArgs e)
+        {
+            _filters.Page = 1;
+            await RefreshAttendanceData();
+        }
+
+        private async void btnPageBack_Click(object sender, EventArgs e)
+        {
+            if (_filters.Page > 1)
+            {
+                _filters.Page--;
+                await RefreshAttendanceData();
+            }
+        }
+
+        private async void btnPageNext_Click(object sender, EventArgs e)
+        {
+            _filters.Page++;
+            await RefreshAttendanceData();
+        }
+
+        private async void btnPageLast_Click(object sender, EventArgs e)
+        {
+            // We need total count to calculate last page
+            var tempRequest = new AttendanceFilterRequest
+            {
+                IsAdmin = true,
+                StudentNumber = string.IsNullOrWhiteSpace(_filters.StudentNumber) ? null : _filters.StudentNumber,
+                StudentName = string.IsNullOrWhiteSpace(_filters.StudentName) ? null : _filters.StudentName,
+                SubjectCode = string.IsNullOrWhiteSpace(_filters.SubjectCode) ? null : _filters.SubjectCode,
+                SubjectName = string.IsNullOrWhiteSpace(_filters.SubjectName) ? null : _filters.SubjectName,
+                PCNumber = string.IsNullOrWhiteSpace(_filters.PCNumber) ? null : _filters.PCNumber,
+                RoomNumber = string.IsNullOrWhiteSpace(_filters.RoomNumber) ? null : _filters.RoomNumber,
+                StartDate = _filters.StartDate,
+                EndDate = _filters.EndDate,
+                Page = 1,
+                PageSize = _filters.PageSize
+            };
+
+            var result = await _api.GetAttendanceUniversalAsync(tempRequest);
+            _filters.Page = (int)Math.Ceiling((double)result.TotalCount / _filters.PageSize);
+            await RefreshAttendanceData();
+        }
+
+        //=====================================================================================
+
         private void ResetFilterState()
         {
             _filters = new AttendanceFilterRequest
@@ -224,6 +270,17 @@ namespace Thesis_Proto3.Forms
             dgv.DataSource = ToDataTable(result.Records);
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DisplayActiveFilters();
+
+            // Update pagination label
+            int start = (result.Records.Count > 0) ? ((_filters.Page - 1) * _filters.PageSize + 1) : 0;
+            int end = Math.Min(_filters.Page * _filters.PageSize, result.TotalCount);
+            lblPage.Text = $"{start}-{end}/{result.TotalCount}";
+
+            // Enable/disable buttons
+            btnPageFirst.Enabled = _filters.Page > 1;
+            btnPageBack.Enabled = _filters.Page > 1;
+            btnPageNext.Enabled = _filters.Page < Math.Ceiling((double)result.TotalCount / _filters.PageSize);
+            btnPageLast.Enabled = _filters.Page < Math.Ceiling((double)result.TotalCount / _filters.PageSize);
         }
 
         private void DisplayActiveFilters()
@@ -294,5 +351,7 @@ namespace Thesis_Proto3.Forms
 
             flpFilters.Controls.Add(lbl);
         }
+
+        
     }
 }

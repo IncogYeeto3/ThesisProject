@@ -47,11 +47,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnPageLast = new System.Windows.Forms.Button();
+            this.btnPageNext = new System.Windows.Forms.Button();
+            this.btnPageBack = new System.Windows.Forms.Button();
+            this.btnPageFirst = new System.Windows.Forms.Button();
+            this.lblPage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.USTACLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // flpFilters
@@ -163,6 +170,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.flpFilters);
             this.panel3.Controls.Add(this.btnResetFilter);
             this.panel3.Controls.Add(this.label6);
@@ -291,6 +299,86 @@
             this.panel2.Size = new System.Drawing.Size(1351, 82);
             this.panel2.TabIndex = 21;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnPageLast);
+            this.panel4.Controls.Add(this.btnPageNext);
+            this.panel4.Controls.Add(this.btnPageBack);
+            this.panel4.Controls.Add(this.btnPageFirst);
+            this.panel4.Controls.Add(this.lblPage);
+            this.panel4.Location = new System.Drawing.Point(1114, 605);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(196, 43);
+            this.panel4.TabIndex = 28;
+            // 
+            // btnPageLast
+            // 
+            this.btnPageLast.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPageLast.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnPageLast.FlatAppearance.BorderSize = 0;
+            this.btnPageLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPageLast.Location = new System.Drawing.Point(136, 17);
+            this.btnPageLast.Name = "btnPageLast";
+            this.btnPageLast.Size = new System.Drawing.Size(29, 23);
+            this.btnPageLast.TabIndex = 32;
+            this.btnPageLast.Text = ">>";
+            this.btnPageLast.UseVisualStyleBackColor = false;
+            this.btnPageLast.Click += new System.EventHandler(this.btnPageLast_Click);
+            // 
+            // btnPageNext
+            // 
+            this.btnPageNext.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPageNext.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnPageNext.FlatAppearance.BorderSize = 0;
+            this.btnPageNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPageNext.Location = new System.Drawing.Point(105, 17);
+            this.btnPageNext.Name = "btnPageNext";
+            this.btnPageNext.Size = new System.Drawing.Size(29, 23);
+            this.btnPageNext.TabIndex = 31;
+            this.btnPageNext.Text = ">";
+            this.btnPageNext.UseVisualStyleBackColor = false;
+            this.btnPageNext.Click += new System.EventHandler(this.btnPageNext_Click);
+            // 
+            // btnPageBack
+            // 
+            this.btnPageBack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPageBack.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnPageBack.FlatAppearance.BorderSize = 0;
+            this.btnPageBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPageBack.Location = new System.Drawing.Point(70, 17);
+            this.btnPageBack.Name = "btnPageBack";
+            this.btnPageBack.Size = new System.Drawing.Size(29, 23);
+            this.btnPageBack.TabIndex = 30;
+            this.btnPageBack.Text = "<";
+            this.btnPageBack.UseVisualStyleBackColor = false;
+            this.btnPageBack.Click += new System.EventHandler(this.btnPageBack_Click);
+            // 
+            // btnPageFirst
+            // 
+            this.btnPageFirst.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPageFirst.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnPageFirst.FlatAppearance.BorderSize = 0;
+            this.btnPageFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPageFirst.Location = new System.Drawing.Point(35, 17);
+            this.btnPageFirst.Name = "btnPageFirst";
+            this.btnPageFirst.Size = new System.Drawing.Size(29, 23);
+            this.btnPageFirst.TabIndex = 29;
+            this.btnPageFirst.Text = "<<";
+            this.btnPageFirst.UseVisualStyleBackColor = false;
+            this.btnPageFirst.Click += new System.EventHandler(this.btnPageFirst_Click);
+            // 
+            // lblPage
+            // 
+            this.lblPage.AutoSize = true;
+            this.lblPage.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPage.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblPage.Location = new System.Drawing.Point(72, 0);
+            this.lblPage.Name = "lblPage";
+            this.lblPage.Size = new System.Drawing.Size(53, 13);
+            this.lblPage.TabIndex = 28;
+            this.lblPage.Text = "Page 0/0";
+            this.lblPage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // TeacherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,6 +402,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -338,5 +428,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnPageLast;
+        private System.Windows.Forms.Button btnPageNext;
+        private System.Windows.Forms.Button btnPageBack;
+        private System.Windows.Forms.Button btnPageFirst;
+        private System.Windows.Forms.Label lblPage;
     }
 }

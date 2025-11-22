@@ -42,17 +42,24 @@
             this.USTACLogo = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.flpFilters = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnResetFilter = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
-            this.btnResetFilter = new System.Windows.Forms.Button();
-            this.flpFilters = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblPage = new System.Windows.Forms.Label();
+            this.btnPageFirst = new System.Windows.Forms.Button();
+            this.btnPageBack = new System.Windows.Forms.Button();
+            this.btnPageNext = new System.Windows.Forms.Button();
+            this.btnPageLast = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.USTACLogo)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSitIn
@@ -230,6 +237,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.flpFilters);
             this.panel3.Controls.Add(this.btnResetFilter);
             this.panel3.Controls.Add(this.label6);
@@ -242,6 +250,26 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1351, 609);
             this.panel3.TabIndex = 19;
+            // 
+            // flpFilters
+            // 
+            this.flpFilters.Location = new System.Drawing.Point(49, 76);
+            this.flpFilters.Name = "flpFilters";
+            this.flpFilters.Size = new System.Drawing.Size(1261, 42);
+            this.flpFilters.TabIndex = 26;
+            // 
+            // btnResetFilter
+            // 
+            this.btnResetFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnResetFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetFilter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetFilter.Location = new System.Drawing.Point(463, 30);
+            this.btnResetFilter.Name = "btnResetFilter";
+            this.btnResetFilter.Size = new System.Drawing.Size(108, 40);
+            this.btnResetFilter.TabIndex = 25;
+            this.btnResetFilter.Text = "ResetFilter";
+            this.btnResetFilter.UseVisualStyleBackColor = false;
+            this.btnResetFilter.Click += new System.EventHandler(this.btnResetFilter_Click);
             // 
             // label6
             // 
@@ -290,25 +318,85 @@
             this.dtpStartDate.Value = new System.DateTime(2025, 11, 22, 21, 33, 15, 0);
             this.dtpStartDate.ValueChanged += new System.EventHandler(this.dtpStartDate_ValueChanged);
             // 
-            // btnResetFilter
+            // panel4
             // 
-            this.btnResetFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnResetFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetFilter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetFilter.Location = new System.Drawing.Point(463, 30);
-            this.btnResetFilter.Name = "btnResetFilter";
-            this.btnResetFilter.Size = new System.Drawing.Size(108, 40);
-            this.btnResetFilter.TabIndex = 25;
-            this.btnResetFilter.Text = "ResetFilter";
-            this.btnResetFilter.UseVisualStyleBackColor = false;
-            this.btnResetFilter.Click += new System.EventHandler(this.btnResetFilter_Click);
+            this.panel4.Controls.Add(this.btnPageLast);
+            this.panel4.Controls.Add(this.btnPageNext);
+            this.panel4.Controls.Add(this.btnPageBack);
+            this.panel4.Controls.Add(this.btnPageFirst);
+            this.panel4.Controls.Add(this.lblPage);
+            this.panel4.Location = new System.Drawing.Point(1114, 516);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(196, 43);
+            this.panel4.TabIndex = 27;
             // 
-            // flpFilters
+            // lblPage
             // 
-            this.flpFilters.Location = new System.Drawing.Point(49, 76);
-            this.flpFilters.Name = "flpFilters";
-            this.flpFilters.Size = new System.Drawing.Size(1261, 42);
-            this.flpFilters.TabIndex = 26;
+            this.lblPage.AutoSize = true;
+            this.lblPage.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPage.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblPage.Location = new System.Drawing.Point(72, 0);
+            this.lblPage.Name = "lblPage";
+            this.lblPage.Size = new System.Drawing.Size(53, 13);
+            this.lblPage.TabIndex = 28;
+            this.lblPage.Text = "Page 0/0";
+            this.lblPage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // btnPageFirst
+            // 
+            this.btnPageFirst.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPageFirst.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnPageFirst.FlatAppearance.BorderSize = 0;
+            this.btnPageFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPageFirst.Location = new System.Drawing.Point(35, 17);
+            this.btnPageFirst.Name = "btnPageFirst";
+            this.btnPageFirst.Size = new System.Drawing.Size(29, 23);
+            this.btnPageFirst.TabIndex = 29;
+            this.btnPageFirst.Text = "<<";
+            this.btnPageFirst.UseVisualStyleBackColor = false;
+            this.btnPageFirst.Click += new System.EventHandler(this.btnPageFirst_Click);
+            // 
+            // btnPageBack
+            // 
+            this.btnPageBack.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPageBack.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnPageBack.FlatAppearance.BorderSize = 0;
+            this.btnPageBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPageBack.Location = new System.Drawing.Point(70, 17);
+            this.btnPageBack.Name = "btnPageBack";
+            this.btnPageBack.Size = new System.Drawing.Size(29, 23);
+            this.btnPageBack.TabIndex = 30;
+            this.btnPageBack.Text = "<";
+            this.btnPageBack.UseVisualStyleBackColor = false;
+            this.btnPageBack.Click += new System.EventHandler(this.btnPageBack_Click);
+            // 
+            // btnPageNext
+            // 
+            this.btnPageNext.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPageNext.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnPageNext.FlatAppearance.BorderSize = 0;
+            this.btnPageNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPageNext.Location = new System.Drawing.Point(105, 17);
+            this.btnPageNext.Name = "btnPageNext";
+            this.btnPageNext.Size = new System.Drawing.Size(29, 23);
+            this.btnPageNext.TabIndex = 31;
+            this.btnPageNext.Text = ">";
+            this.btnPageNext.UseVisualStyleBackColor = false;
+            this.btnPageNext.Click += new System.EventHandler(this.btnPageNext_Click);
+            // 
+            // btnPageLast
+            // 
+            this.btnPageLast.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPageLast.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnPageLast.FlatAppearance.BorderSize = 0;
+            this.btnPageLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPageLast.Location = new System.Drawing.Point(136, 17);
+            this.btnPageLast.Name = "btnPageLast";
+            this.btnPageLast.Size = new System.Drawing.Size(29, 23);
+            this.btnPageLast.TabIndex = 32;
+            this.btnPageLast.Text = ">>";
+            this.btnPageLast.UseVisualStyleBackColor = false;
+            this.btnPageLast.Click += new System.EventHandler(this.btnPageLast_Click);
             // 
             // AdminForm
             // 
@@ -332,6 +420,8 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -357,5 +447,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnResetFilter;
         private System.Windows.Forms.FlowLayoutPanel flpFilters;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnPageFirst;
+        private System.Windows.Forms.Label lblPage;
+        private System.Windows.Forms.Button btnPageLast;
+        private System.Windows.Forms.Button btnPageNext;
+        private System.Windows.Forms.Button btnPageBack;
     }
 }
