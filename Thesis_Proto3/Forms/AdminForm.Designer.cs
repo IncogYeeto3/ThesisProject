@@ -43,11 +43,13 @@
             this.USTACLogo = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
-            this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.btnDateSubmit = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
+            this.btnResetFilter = new System.Windows.Forms.Button();
+            this.flpFilters = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.USTACLogo)).BeginInit();
@@ -75,7 +77,7 @@
             // dgv
             // 
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Location = new System.Drawing.Point(49, 109);
+            this.dgv.Location = new System.Drawing.Point(49, 124);
             this.dgv.Name = "dgv";
             this.dgv.Size = new System.Drawing.Size(1261, 386);
             this.dgv.TabIndex = 8;
@@ -239,6 +241,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.flpFilters);
+            this.panel3.Controls.Add(this.btnResetFilter);
             this.panel3.Controls.Add(this.btnDateSubmit);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label5);
@@ -252,37 +256,18 @@
             this.panel3.Size = new System.Drawing.Size(1351, 609);
             this.panel3.TabIndex = 19;
             // 
-            // dtpStartDate
+            // btnDateSubmit
             // 
-            this.dtpStartDate.CalendarFont = new System.Drawing.Font("Consolas", 18F);
-            this.dtpStartDate.Font = new System.Drawing.Font("Consolas", 18F);
-            this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpStartDate.Location = new System.Drawing.Point(49, 34);
-            this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(201, 36);
-            this.dtpStartDate.TabIndex = 20;
-            // 
-            // dtpEndDate
-            // 
-            this.dtpEndDate.CalendarFont = new System.Drawing.Font("Consolas", 18F);
-            this.dtpEndDate.Font = new System.Drawing.Font("Consolas", 18F);
-            this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEndDate.Location = new System.Drawing.Point(256, 34);
-            this.dtpEndDate.Name = "dtpEndDate";
-            this.dtpEndDate.Size = new System.Drawing.Size(201, 36);
-            this.dtpEndDate.TabIndex = 21;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label5.Location = new System.Drawing.Point(46, 18);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "Start Date";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDateSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
+            this.btnDateSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDateSubmit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDateSubmit.Location = new System.Drawing.Point(463, 32);
+            this.btnDateSubmit.Name = "btnDateSubmit";
+            this.btnDateSubmit.Size = new System.Drawing.Size(108, 40);
+            this.btnDateSubmit.TabIndex = 24;
+            this.btnDateSubmit.Text = "Submit";
+            this.btnDateSubmit.UseVisualStyleBackColor = false;
+            this.btnDateSubmit.Click += new System.EventHandler(this.btnDateSubmit_Click);
             // 
             // label6
             // 
@@ -296,18 +281,57 @@
             this.label6.Text = "End Date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // btnDateSubmit
+            // label5
             // 
-            this.btnDateSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
-            this.btnDateSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDateSubmit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDateSubmit.Location = new System.Drawing.Point(463, 32);
-            this.btnDateSubmit.Name = "btnDateSubmit";
-            this.btnDateSubmit.Size = new System.Drawing.Size(108, 40);
-            this.btnDateSubmit.TabIndex = 24;
-            this.btnDateSubmit.Text = "Submit";
-            this.btnDateSubmit.UseVisualStyleBackColor = false;
-            this.btnDateSubmit.Click += new System.EventHandler(this.btnDateSubmit_Click);
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label5.Location = new System.Drawing.Point(46, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Start Date";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // dtpEndDate
+            // 
+            this.dtpEndDate.CalendarFont = new System.Drawing.Font("Consolas", 18F);
+            this.dtpEndDate.Font = new System.Drawing.Font("Consolas", 18F);
+            this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEndDate.Location = new System.Drawing.Point(256, 34);
+            this.dtpEndDate.Name = "dtpEndDate";
+            this.dtpEndDate.Size = new System.Drawing.Size(201, 36);
+            this.dtpEndDate.TabIndex = 21;
+            // 
+            // dtpStartDate
+            // 
+            this.dtpStartDate.CalendarFont = new System.Drawing.Font("Consolas", 18F);
+            this.dtpStartDate.Font = new System.Drawing.Font("Consolas", 18F);
+            this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStartDate.Location = new System.Drawing.Point(49, 34);
+            this.dtpStartDate.Name = "dtpStartDate";
+            this.dtpStartDate.Size = new System.Drawing.Size(201, 36);
+            this.dtpStartDate.TabIndex = 20;
+            // 
+            // btnResetFilter
+            // 
+            this.btnResetFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnResetFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetFilter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetFilter.Location = new System.Drawing.Point(577, 32);
+            this.btnResetFilter.Name = "btnResetFilter";
+            this.btnResetFilter.Size = new System.Drawing.Size(108, 40);
+            this.btnResetFilter.TabIndex = 25;
+            this.btnResetFilter.Text = "ResetFilter";
+            this.btnResetFilter.UseVisualStyleBackColor = false;
+            this.btnResetFilter.Click += new System.EventHandler(this.btnResetFilter_Click);
+            // 
+            // flpFilters
+            // 
+            this.flpFilters.Location = new System.Drawing.Point(49, 76);
+            this.flpFilters.Name = "flpFilters";
+            this.flpFilters.Size = new System.Drawing.Size(1261, 42);
+            this.flpFilters.TabIndex = 26;
             // 
             // AdminForm
             // 
@@ -356,5 +380,7 @@
         private System.Windows.Forms.Button btnDateSubmit;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnResetFilter;
+        private System.Windows.Forms.FlowLayoutPanel flpFilters;
     }
 }

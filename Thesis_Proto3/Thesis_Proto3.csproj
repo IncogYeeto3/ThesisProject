@@ -123,10 +123,13 @@
       <DependentUpon>TeacherForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ApiResponse.cs" />
+    <Compile Include="Models\AttendanceFilterRequest.cs" />
     <Compile Include="Models\AttendanceOverrideRequest.cs" />
     <Compile Include="Models\AttendanceOverrideResponse.cs" />
+    <Compile Include="Models\AttendancePagedResponse.cs" />
     <Compile Include="Models\AttendanceRequest.cs" />
     <Compile Include="Models\AttendanceResponse.cs" />
+    <Compile Include="Models\AttendanceRecord.cs" />
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\Student.cs" />

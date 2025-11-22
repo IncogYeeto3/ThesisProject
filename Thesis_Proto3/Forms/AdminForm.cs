@@ -12,8 +12,9 @@ using Thesis_Proto3.Services;
 
 namespace Thesis_Proto3.Forms
 {
-    public partial class AdminForm: Form
+    public partial class AdminForm : Form
     {
+        private AttendanceFilterRequest _filters = new AttendanceFilterRequest();
         private readonly LoginResponse _loggedInUser;
         private readonly ApiService _api;
         private bool _isViewingStudents = true;
@@ -33,7 +34,7 @@ namespace Thesis_Proto3.Forms
 
             label1.Text = "Welcome " + _loggedInUser.Role + ", " + _loggedInUser.Username;
 
-        
+
             var subjects = await _api.GetAllSubjectsAsync();
 
             subjects.Insert(0, new Subject { SubjectID = 0, SubjectName = "" });
@@ -80,24 +81,51 @@ namespace Thesis_Proto3.Forms
         //TODO UPDATE THIS
         private async void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
             string columnName = dgv.Columns[e.ColumnIndex].Name;
             string value = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
 
-            if (string.IsNullOrWhiteSpace(value))
-                return;
+            if (string.IsNullOrWhiteSpace(value)) return;
 
-            if (_isViewingStudents)
+            // Map the column name dynamically to the filter state
+            switch (columnName)
             {
-                var students = await _api.GetStudentsByAdminAsync(columnName, value);
-                dgv.DataSource = ToDataTable(students);
+                case "StudentNumber":
+                    _filters.StudentNumber = value;
+                    break;
+                case "StudentName":
+                    _filters.StudentName = value;
+                    break;
+                case "SubjectCode":
+                    _filters.SubjectCode = value;
+                    break;
+                case "SubjectName":
+                    _filters.SubjectName = value;
+                    break;
+                case "PCNumber":
+                    _filters.PCNumber = value;
+                    break;
+                case "RoomNumber":
+                    _filters.RoomNumber = value;
+                    break;
+                case "LogDate":
+                    if (DateTime.TryParse(value, out DateTime parsedDate))
+                    {
+                        _filters.StartDate = parsedDate.Date;
+                        _filters.EndDate = parsedDate.Date;
+                    }
+                    break;
+                default:
+                    // For any other column, just ignore
+                    return;
             }
-            else
-            {
-                var attendance = await _api.GetAttendanceByAdminAsync(columnName, value);
-                dgv.DataSource = ToDataTable(attendance);
-            }
+
+            // Reset page to 1 after applying new filter
+            _filters.Page = 1;
+
+            // Reload the grid with updated filter
+            await RefreshAttendanceData();
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
@@ -159,22 +187,16 @@ namespace Thesis_Proto3.Forms
             return table;
         }
 
-        //TODO UPDATE THIS 
         private async void btnDateSubmit_Click(object sender, EventArgs e)
         {
             try
             {
-                DateTime startOfMonth = dtpStartDate.Value;
-                DateTime endOfMonth = dtpEndDate.Value;
+                _filters.StartDate = dtpStartDate.Value.Date;
+                _filters.EndDate = dtpEndDate.Value.Date;
 
-                int? subjectId = (int)cmbSubject.SelectedValue;
-                if (subjectId == 0) subjectId = null;
+                _filters.Page = 1; // reset pagination when changing filters
 
-                var attendance = await _api.GetAttendanceByAdminRange(
-                    startOfMonth, endOfMonth, subjectId);
-
-                dgv.DataSource = ToDataTable(attendance);
-                dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                await RefreshAttendanceData();
             }
             catch (Exception ex)
             {
@@ -183,5 +205,132 @@ namespace Thesis_Proto3.Forms
 
             _isViewingStudents = false;
         }
+
+        private void btnResetFilter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Reset your filter state
+                _filters = new AttendanceFilterRequest
+                {
+                    IsAdmin = true,
+                    StudentNumber = null,
+                    StudentName = null,
+                    SubjectCode = null,
+                    SubjectName = null,
+                    PCNumber = null,
+                    RoomNumber = null,
+                    StartDate = null,
+                    EndDate = null,
+                    Page = 1,
+                    PageSize = 50
+                };
+
+                // Reset WinForms controls
+                dtpStartDate.Value = DateTime.Today;
+                dtpEndDate.Value = DateTime.Today;
+                cmbSubject.SelectedIndex = 0; // or -1 if you want none selected
+
+                // Clear DataGridView
+                dgv.DataSource = null;
+
+                _isViewingStudents = false;
+                DisplayActiveFilters();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error resetting filters: " + ex.Message);
+            }
+        }
+
+        private async Task RefreshAttendanceData()
+        {
+            var request = new AttendanceFilterRequest
+            {
+                IsAdmin = true,
+                StudentNumber = string.IsNullOrWhiteSpace(_filters.StudentNumber) ? null : _filters.StudentNumber,
+                StudentName = string.IsNullOrWhiteSpace(_filters.StudentName) ? null : _filters.StudentName,
+                SubjectCode = string.IsNullOrWhiteSpace(_filters.SubjectCode) ? null : _filters.SubjectCode,
+                SubjectName = string.IsNullOrWhiteSpace(_filters.SubjectName) ? null : _filters.SubjectName,
+                PCNumber = string.IsNullOrWhiteSpace(_filters.PCNumber) ? null : _filters.PCNumber,
+                RoomNumber = string.IsNullOrWhiteSpace(_filters.RoomNumber) ? null : _filters.RoomNumber,
+                StartDate = _filters.StartDate,
+                EndDate = _filters.EndDate,
+                Page = _filters.Page,
+                PageSize = _filters.PageSize
+            };
+
+            var result = await _api.GetAttendanceUniversalAsync(request);
+
+            dgv.DataSource = ToDataTable(result.Records);
+            DisplayActiveFilters();
+            //lblTotalCount.Text = $"Total: {result.TotalCount}";
+        }
+
+        private void DisplayActiveFilters()
+        {
+            // Clear previous items
+            flpFilters.Controls.Clear();
+
+            // Create a helper dictionary: property name => display name
+            var filterMap = new Dictionary<string, string>
+                {
+                    { nameof(_filters.StudentNumber), "Student #" },
+                    { nameof(_filters.StudentName), "Student Name" },
+                    { nameof(_filters.SubjectCode), "Subject Code" },
+                    { nameof(_filters.SubjectName), "Subject Name" },
+                    { nameof(_filters.PCNumber), "PC Number" },
+                    { nameof(_filters.RoomNumber), "Room" },
+                    { nameof(_filters.StartDate), "Start Date" },
+                    { nameof(_filters.EndDate), "End Date" }
+                };
+
+            // List of properties to ignore
+            var ignoreProps = new HashSet<string> { nameof(_filters.IsAdmin), nameof(_filters.Page), nameof(_filters.PageSize) };
+
+            // Reflection to loop over _filters properties
+            var props = _filters.GetType().GetProperties();
+
+            foreach (var prop in props)
+            {
+                if (ignoreProps.Contains(prop.Name))
+                    continue;
+
+                object value = prop.GetValue(_filters);
+
+                if (value != null && !(value is string str && string.IsNullOrWhiteSpace(str)))
+                {
+                    string displayName = filterMap.ContainsKey(prop.Name) ? filterMap[prop.Name] : prop.Name;
+                    string displayValue;
+
+                    // Format dates nicely
+                    if (value is DateTime dt)
+                    {
+                        displayValue = dt.ToShortDateString();
+                    }
+                    else
+                    {
+                        displayValue = value.ToString();
+                    }
+
+                    // Create a Label for each active filter
+                    Label lbl = new Label
+                    {
+                        Text = $"{displayName}: {displayValue}",
+                        AutoSize = true,
+                        Padding = new Padding(5),
+                        Margin = new Padding(3),
+                        BackColor = Color.LightBlue,
+                        ForeColor = Color.Black,
+                        Cursor = Cursors.Hand // hint that it’s clickable later
+                    };
+
+                    flpFilters.Controls.Add(lbl);
+                }
+            }
+        }
+
+
+
     }
 }

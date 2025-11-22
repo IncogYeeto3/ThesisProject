@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Thesis_Proto3.Models;
 
+
 namespace Thesis_Proto3.Services
 {
     class ApiService
@@ -249,7 +250,23 @@ namespace Thesis_Proto3.Services
             return new List<Subject>();
         }
 
-        // ----------- Sit-In Methods -----------
+        // ----------- Attendance Methods -----------
+
+
+        public async Task<AttendancePagedResponse> GetAttendanceUniversalAsync(AttendanceFilterRequest request)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/attendance/search", request);
+
+            response.EnsureSuccessStatusCode();
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            return await response.Content.ReadFromJsonAsync<AttendancePagedResponse>(options);
+        }
+
 
         public async Task<int> AddAttendanceOverrideAsync(AttendanceOverrideRequest request)
         {
