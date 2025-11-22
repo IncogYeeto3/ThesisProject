@@ -62,8 +62,6 @@ public class AttendanceController : Controller
         }
     }
 
-
-
     [HttpPut("{logId}/logoff")]
     public async Task<IActionResult> UpdateLogOffTime(int logId)
     {

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Thesis_Proto3.Crystal;
 using Thesis_Proto3.Models;
 using Thesis_Proto3.Services;
 
@@ -79,6 +80,27 @@ namespace Thesis_Proto3.Forms
 
             _isViewingStudents = false;
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            // Get the current DataTable from the DataGridView
+            if (dgv.DataSource is DataTable dt && dt.Rows.Count > 0)
+            {
+                DataSet1 ds = new DataSet1();
+                ds.AttendanceRecord.Clear();
+                foreach (DataRow row in dt.Rows)
+                    ds.AttendanceRecord.ImportRow(row);
+
+                // Open the CrystalReportViewer form
+                CrystalReportViewer viewer = new CrystalReportViewer(ds);
+                viewer.Show();
+            }
+            else
+            {
+                MessageBox.Show("No data available to print.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
 
         //=====================================================================================
 
