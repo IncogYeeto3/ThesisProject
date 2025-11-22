@@ -34,7 +34,6 @@
             this.btnViewStudent = new System.Windows.Forms.Button();
             this.btnViewAttendance = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbSubject = new System.Windows.Forms.ComboBox();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,7 +42,6 @@
             this.USTACLogo = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnDateSubmit = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
@@ -128,15 +126,6 @@
             this.label1.Size = new System.Drawing.Size(84, 32);
             this.label1.TabIndex = 11;
             this.label1.Text = "Admin";
-            // 
-            // cmbSubject
-            // 
-            this.cmbSubject.Font = new System.Drawing.Font("Consolas", 18F);
-            this.cmbSubject.FormattingEnabled = true;
-            this.cmbSubject.Location = new System.Drawing.Point(1140, 22);
-            this.cmbSubject.Name = "cmbSubject";
-            this.cmbSubject.Size = new System.Drawing.Size(170, 36);
-            this.cmbSubject.TabIndex = 15;
             // 
             // btnLogOut
             // 
@@ -243,31 +232,16 @@
             // 
             this.panel3.Controls.Add(this.flpFilters);
             this.panel3.Controls.Add(this.btnResetFilter);
-            this.panel3.Controls.Add(this.btnDateSubmit);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.dtpEndDate);
             this.panel3.Controls.Add(this.dtpStartDate);
             this.panel3.Controls.Add(this.dgv);
-            this.panel3.Controls.Add(this.cmbSubject);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(205, 82);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1351, 609);
             this.panel3.TabIndex = 19;
-            // 
-            // btnDateSubmit
-            // 
-            this.btnDateSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
-            this.btnDateSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDateSubmit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDateSubmit.Location = new System.Drawing.Point(463, 32);
-            this.btnDateSubmit.Name = "btnDateSubmit";
-            this.btnDateSubmit.Size = new System.Drawing.Size(108, 40);
-            this.btnDateSubmit.TabIndex = 24;
-            this.btnDateSubmit.Text = "Submit";
-            this.btnDateSubmit.UseVisualStyleBackColor = false;
-            this.btnDateSubmit.Click += new System.EventHandler(this.btnDateSubmit_Click);
             // 
             // label6
             // 
@@ -302,6 +276,7 @@
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(201, 36);
             this.dtpEndDate.TabIndex = 21;
+            this.dtpEndDate.ValueChanged += new System.EventHandler(this.dtpEndDate_ValueChanged);
             // 
             // dtpStartDate
             // 
@@ -312,13 +287,15 @@
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(201, 36);
             this.dtpStartDate.TabIndex = 20;
+            this.dtpStartDate.Value = new System.DateTime(2025, 11, 22, 21, 33, 15, 0);
+            this.dtpStartDate.ValueChanged += new System.EventHandler(this.dtpStartDate_ValueChanged);
             // 
             // btnResetFilter
             // 
             this.btnResetFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnResetFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetFilter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetFilter.Location = new System.Drawing.Point(577, 32);
+            this.btnResetFilter.Location = new System.Drawing.Point(463, 30);
             this.btnResetFilter.Name = "btnResetFilter";
             this.btnResetFilter.Size = new System.Drawing.Size(108, 40);
             this.btnResetFilter.TabIndex = 25;
@@ -366,7 +343,6 @@
         private System.Windows.Forms.Button btnViewStudent;
         private System.Windows.Forms.Button btnViewAttendance;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbSubject;
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
@@ -377,7 +353,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DateTimePicker dtpEndDate;
         private System.Windows.Forms.DateTimePicker dtpStartDate;
-        private System.Windows.Forms.Button btnDateSubmit;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnResetFilter;

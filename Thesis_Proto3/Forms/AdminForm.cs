@@ -21,6 +21,7 @@ namespace Thesis_Proto3.Forms
         private string _lastSortedColumn = null;
         private SortOrder _lastSortOrder = SortOrder.None;
 
+        //=====================================================================================
 
         public AdminForm(LoginResponse loggedInUser)
         {
@@ -28,25 +29,18 @@ namespace Thesis_Proto3.Forms
             _loggedInUser = loggedInUser;
             _api = new ApiService();
         }
-        private async void AdminForm_Load(object sender, EventArgs e)
+
+        private void AdminForm_Load(object sender, EventArgs e)
         {
-            btnViewStudent.PerformClick();
-
             label1.Text = "Welcome " + _loggedInUser.Role + ", " + _loggedInUser.Username;
-
-
-            var subjects = await _api.GetAllSubjectsAsync();
-
-            subjects.Insert(0, new Subject { SubjectID = 0, SubjectName = "" });
-
-            cmbSubject.DataSource = ToDataTable(subjects);
-            cmbSubject.DisplayMember = "SubjectName";
-            cmbSubject.ValueMember = "SubjectID";
 
             foreach (DataGridViewColumn column in dgv.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.Programmatic;
             }
+
+            btnResetFilter.PerformClick();
+            btnViewAttendance.PerformClick();
         }
 
         private void btnSitIn_Click(object sender, EventArgs e)
@@ -57,28 +51,31 @@ namespace Thesis_Proto3.Forms
             }
         }
 
+        //=====================================================================================
+
         private async void btnViewStudent_Click(object sender, EventArgs e)
         {
+            _isViewingStudents = true;
+            btnResetFilter.PerformClick();
+
             var students = await _api.GetStudentsByAdminAsync();
 
             dgv.DataSource = ToDataTable(students);
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-            _isViewingStudents = true;
+           
         }
 
         private async void btnViewAttendance_Click(object sender, EventArgs e)
-        {
-            var attendance = await _api.GetAttendanceByAdminAsync();
-
-            dgv.DataSource = ToDataTable(attendance);
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        {          
+            btnResetFilter.PerformClick();
+            RefreshAttendanceData();
 
             _isViewingStudents = false;
         }
 
+        //=====================================================================================
 
-        //TODO UPDATE THIS
         private async void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
@@ -168,44 +165,6 @@ namespace Thesis_Proto3.Forms
             _lastSortOrder = newSortOrder;
         }
 
-        private DataTable ToDataTable<T>(List<T> items)
-        {
-            var table = new DataTable(typeof(T).Name);
-            var props = typeof(T).GetProperties();
-
-            foreach (var prop in props)
-                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
-
-            foreach (var item in items)
-            {
-                var row = table.NewRow();
-                foreach (var prop in props)
-                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
-                table.Rows.Add(row);
-            }
-
-            return table;
-        }
-
-        private async void btnDateSubmit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                _filters.StartDate = dtpStartDate.Value.Date;
-                _filters.EndDate = dtpEndDate.Value.Date;
-
-                _filters.Page = 1; // reset pagination when changing filters
-
-                await RefreshAttendanceData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading monthly report: " + ex.Message);
-            }
-
-            _isViewingStudents = false;
-        }
-
         private void btnResetFilter_Click(object sender, EventArgs e)
         {
             try
@@ -229,18 +188,60 @@ namespace Thesis_Proto3.Forms
                 // Reset WinForms controls
                 dtpStartDate.Value = DateTime.Today;
                 dtpEndDate.Value = DateTime.Today;
-                cmbSubject.SelectedIndex = 0; // or -1 if you want none selected
 
                 // Clear DataGridView
                 dgv.DataSource = null;
 
                 _isViewingStudents = false;
                 DisplayActiveFilters();
+
+                if (_isViewingStudents==false)RefreshAttendanceData();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error resetting filters: " + ex.Message);
             }
+        }
+
+        //=====================================================================================
+
+        private async void dtpStartDate_ValueChanged(object sender, EventArgs e)
+        {
+            _filters.StartDate = dtpStartDate.Value.Date;
+            _filters.Page = 1;
+
+            await RefreshAttendanceData();
+            _isViewingStudents = false;
+        }
+
+        private async void dtpEndDate_ValueChanged(object sender, EventArgs e)
+        {
+            _filters.EndDate = dtpEndDate.Value.Date;
+            _filters.Page = 1;
+
+            await RefreshAttendanceData();
+            _isViewingStudents = false;
+        }
+
+        //=====================================================================================
+
+        private DataTable ToDataTable<T>(List<T> items)
+        {
+            var table = new DataTable(typeof(T).Name);
+            var props = typeof(T).GetProperties();
+
+            foreach (var prop in props)
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+
+            foreach (var item in items)
+            {
+                var row = table.NewRow();
+                foreach (var prop in props)
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                table.Rows.Add(row);
+            }
+
+            return table;
         }
 
         private async Task RefreshAttendanceData()
@@ -263,74 +264,102 @@ namespace Thesis_Proto3.Forms
             var result = await _api.GetAttendanceUniversalAsync(request);
 
             dgv.DataSource = ToDataTable(result.Records);
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DisplayActiveFilters();
             //lblTotalCount.Text = $"Total: {result.TotalCount}";
         }
 
         private void DisplayActiveFilters()
         {
-            // Clear previous items
             flpFilters.Controls.Clear();
 
-            // Create a helper dictionary: property name => display name
-            var filterMap = new Dictionary<string, string>
-                {
-                    { nameof(_filters.StudentNumber), "Student #" },
-                    { nameof(_filters.StudentName), "Student Name" },
-                    { nameof(_filters.SubjectCode), "Subject Code" },
-                    { nameof(_filters.SubjectName), "Subject Name" },
-                    { nameof(_filters.PCNumber), "PC Number" },
-                    { nameof(_filters.RoomNumber), "Room" },
-                    { nameof(_filters.StartDate), "Start Date" },
-                    { nameof(_filters.EndDate), "End Date" }
-                };
+            // Example: only add filters that are actually set
+            if (!string.IsNullOrWhiteSpace(_filters.StudentName))
+                AddFilterLabel("StudentName", _filters.StudentName);
 
-            // List of properties to ignore
-            var ignoreProps = new HashSet<string> { nameof(_filters.IsAdmin), nameof(_filters.Page), nameof(_filters.PageSize) };
+            if (!string.IsNullOrWhiteSpace(_filters.StudentNumber))
+                AddFilterLabel("StudentNumber", _filters.StudentNumber);
 
-            // Reflection to loop over _filters properties
-            var props = _filters.GetType().GetProperties();
+            if (!string.IsNullOrWhiteSpace(_filters.SubjectCode))
+                AddFilterLabel("SubjectCode", _filters.SubjectCode);
 
-            foreach (var prop in props)
-            {
-                if (ignoreProps.Contains(prop.Name))
-                    continue;
+            if (!string.IsNullOrWhiteSpace(_filters.SubjectName))
+                AddFilterLabel("SubjectName", _filters.SubjectName);
 
-                object value = prop.GetValue(_filters);
+            if (!string.IsNullOrWhiteSpace(_filters.PCNumber))
+                AddFilterLabel("PCNumber", _filters.PCNumber);
 
-                if (value != null && !(value is string str && string.IsNullOrWhiteSpace(str)))
-                {
-                    string displayName = filterMap.ContainsKey(prop.Name) ? filterMap[prop.Name] : prop.Name;
-                    string displayValue;
+            if (!string.IsNullOrWhiteSpace(_filters.RoomNumber))
+                AddFilterLabel("RoomNumber", _filters.RoomNumber);
 
-                    // Format dates nicely
-                    if (value is DateTime dt)
-                    {
-                        displayValue = dt.ToShortDateString();
-                    }
-                    else
-                    {
-                        displayValue = value.ToString();
-                    }
-
-                    // Create a Label for each active filter
-                    Label lbl = new Label
-                    {
-                        Text = $"{displayName}: {displayValue}",
-                        AutoSize = true,
-                        Padding = new Padding(5),
-                        Margin = new Padding(3),
-                        BackColor = Color.LightBlue,
-                        ForeColor = Color.Black,
-                        Cursor = Cursors.Hand // hint that it’s clickable later
-                    };
-
-                    flpFilters.Controls.Add(lbl);
-                }
-            }
+            if (_filters.StartDate.HasValue && _filters.EndDate.HasValue)
+                AddFilterLabel("LogDate", $"{_filters.StartDate.Value:yyyy-MM-dd}");
         }
 
+        private void AddFilterLabel(string key, string value)
+        {
+            Label lbl = new Label();
+            lbl.Text = $"{key}: {value}";
+            lbl.Padding = new Padding(5, 2, 5, 2);
+            lbl.Margin = new Padding(3);
+            lbl.BackColor = Color.LightGray;
+            lbl.AutoSize = true;
+            lbl.Tag = key; // store the filter key
 
+            // Hover effect
+            lbl.MouseEnter += (s, e) =>
+            {
+                lbl.ForeColor = Color.Gray;
+                lbl.Font = new Font(lbl.Font, FontStyle.Strikeout);
+                lbl.Cursor = Cursors.Hand; // show it’s clickable
+            };
+            lbl.MouseLeave += (s, e) =>
+            {
+                lbl.ForeColor = Color.Black;
+                lbl.Font = new Font(lbl.Font, FontStyle.Regular);
+                lbl.Cursor = Cursors.Default;
+            };
 
+            // Click to remove filter
+            lbl.MouseClick += async (s, e) =>
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    switch (key)
+                    {
+                        case "StudentNumber":
+                            _filters.StudentNumber = null;
+                            break;
+                        case "StudentName":
+                            _filters.StudentName = null;
+                            break;
+                        case "SubjectCode":
+                            _filters.SubjectCode = null;
+                            break;
+                        case "SubjectName":
+                            _filters.SubjectName = null;
+                            break;
+                        case "PCNumber":
+                            _filters.PCNumber = null;
+                            break;
+                        case "RoomNumber":
+                            _filters.RoomNumber = null;
+                            break;
+                        case "LogDate":
+                            _filters.StartDate = null;
+                            _filters.EndDate = null;
+                            break;
+                    }
+
+                    // Refresh the FLP and the DataGridView
+                    DisplayActiveFilters();
+                    await RefreshAttendanceData();
+                }
+            };
+
+            flpFilters.Controls.Add(lbl);
+        }
+
+        
     }
 }

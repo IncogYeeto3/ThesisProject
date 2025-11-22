@@ -9,6 +9,7 @@ namespace Thesis_Proto3.Models
     public class AttendanceFilterRequest
     {
         public bool IsAdmin { get; set; } = true;
+        public string TeacherNumber { get; set; }
         public string StudentNumber { get; set; }
         public string StudentName { get; set; }
         public string SubjectCode { get; set; }
