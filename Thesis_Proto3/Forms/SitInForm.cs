@@ -88,6 +88,5 @@ namespace Thesis_Proto3.Forms
             this.Close();
         }
 
-        
     }
 }
