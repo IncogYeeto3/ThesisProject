@@ -37,10 +37,10 @@ namespace Thesis_Proto3
             this.label3 = new System.Windows.Forms.Label();
             this.USTACLogo = new System.Windows.Forms.PictureBox();
             this.panelLogin = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.HeaderPanel = new System.Windows.Forms.Panel();
             this.HeaderLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.USTACLogo)).BeginInit();
             this.panelLogin.SuspendLayout();
@@ -52,7 +52,7 @@ namespace Thesis_Proto3
             this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
             this.btnLogOut.FlatAppearance.BorderSize = 0;
             this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogOut.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogOut.Location = new System.Drawing.Point(98, 265);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(207, 38);
@@ -70,7 +70,7 @@ namespace Thesis_Proto3
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(817, 95);
+            this.panelHeader.Size = new System.Drawing.Size(1358, 95);
             this.panelHeader.TabIndex = 13;
             // 
             // label2
@@ -122,10 +122,24 @@ namespace Thesis_Proto3
             this.panelLogin.Controls.Add(this.label4);
             this.panelLogin.Controls.Add(this.HeaderPanel);
             this.panelLogin.Controls.Add(this.btnLogOut);
-            this.panelLogin.Location = new System.Drawing.Point(227, 114);
+            this.panelLogin.Location = new System.Drawing.Point(498, 169);
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(400, 381);
             this.panelLogin.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(4, 162);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(392, 19);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "         Your login has been authenticated successfully.         ";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label4
             // 
@@ -158,33 +172,19 @@ namespace Thesis_Proto3
             | System.Windows.Forms.AnchorStyles.Right)));
             this.HeaderLabel.AutoSize = true;
             this.HeaderLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HeaderLabel.Location = new System.Drawing.Point(93, 17);
+            this.HeaderLabel.Location = new System.Drawing.Point(4, 16);
             this.HeaderLabel.Name = "HeaderLabel";
-            this.HeaderLabel.Size = new System.Drawing.Size(222, 25);
+            this.HeaderLabel.Size = new System.Drawing.Size(392, 25);
             this.HeaderLabel.TabIndex = 0;
-            this.HeaderLabel.Text = "ATTENDANCE TRACKER";
+            this.HeaderLabel.Text = "                 ATTENDANCE TRACKER                 ";
             this.HeaderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(37, 162);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(320, 19);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Your login has been authenticated successfully.";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(817, 507);
+            this.ClientSize = new System.Drawing.Size(1358, 616);
             this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.panelHeader);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
