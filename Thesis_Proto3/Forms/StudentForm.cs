@@ -13,6 +13,8 @@ using Thesis_Proto3.Services;
 using Microsoft.Win32;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Reflection;
+using System.Drawing.Drawing2D;
 
 namespace Thesis_Proto3
 {
@@ -24,8 +26,46 @@ namespace Thesis_Proto3
         public StudentForm(LoginResponse loggedInUser, int logId)
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
             _loggedInUser = loggedInUser;
             _currentLogId = logId;
+
+            // Make btnLogin have rounded corners
+            GraphicsPath path = new GraphicsPath();
+            int radius = 15; // corner roundness
+
+
+            path.AddArc(0, 0, radius, radius, 180, 90); // top-left
+            path.AddArc(btnLogOut.Width - radius, 0, radius, radius, 270, 90); // top-right
+            path.AddArc(btnLogOut.Width - radius, btnLogOut.Height - radius, radius, radius, 0, 90); // bottom-right
+            path.AddArc(0, btnLogOut.Height - radius, radius, radius, 90, 90); // bottom-left
+            path.CloseAllFigures();
+
+            btnLogOut.Region = new Region(path);
+
+            SetRandomBackgroundImage();
+        }
+
+        private void SetRandomBackgroundImage()
+        {
+            string[] imageNames = { "Bg1", "Bg2", "Bg3", "Bg4", "Bg5", "Bg6" };
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
+            string selectedName = imageNames[rand.Next(imageNames.Length)];
+
+            var image = (Image)Properties.Resources.ResourceManager.GetObject(selectedName);
+
+            if (image != null)
+            {
+                Bitmap stretched = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
+                using (Graphics g = Graphics.FromImage(stretched))
+                {
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(image, new Rectangle(0, 0, stretched.Width, stretched.Height));
+                }
+                this.BackgroundImage = stretched;
+                this.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+
         }
 
         private void Form2_Load(object sender, EventArgs e)

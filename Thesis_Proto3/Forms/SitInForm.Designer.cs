@@ -90,7 +90,7 @@
             this.panelLogin.Controls.Add(this.HeaderPanel);
             this.panelLogin.Controls.Add(this.btnSubmit);
             this.panelLogin.Controls.Add(this.txtStudentNumber);
-            this.panelLogin.Location = new System.Drawing.Point(464, 183);
+            this.panelLogin.Location = new System.Drawing.Point(242, 146);
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(452, 452);
             this.panelLogin.TabIndex = 11;
@@ -234,7 +234,7 @@
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1416, 95);
+            this.panelHeader.Size = new System.Drawing.Size(973, 95);
             this.panelHeader.TabIndex = 14;
             // 
             // label5
@@ -283,8 +283,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Thesis_Proto3.Properties.Resources.Bg1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1416, 738);
+            this.ClientSize = new System.Drawing.Size(973, 665);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelLogin);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

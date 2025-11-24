@@ -15,6 +15,8 @@ using Thesis_Proto3.Forms;
 using System.Drawing.Drawing2D;
 using static Thesis_Proto3.Services.ApiService;
 using System.Security.Cryptography;
+using System.Reflection;
+
 
 
 namespace Thesis_Proto3
@@ -26,6 +28,7 @@ namespace Thesis_Proto3
         public LoginForm()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
             // Make btnLogin have rounded corners
             GraphicsPath path = new GraphicsPath();
             int radius = 15; // corner roundness
@@ -39,7 +42,31 @@ namespace Thesis_Proto3
 
             btnLogin.Region = new Region(path);
 
+            SetRandomBackgroundImage();
+
         }
+
+        private void SetRandomBackgroundImage()
+        {
+            string[] imageNames = { "Bg1", "Bg2", "Bg3", "Bg4", "Bg5", "Bg6" };
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
+            string selectedName = imageNames[rand.Next(imageNames.Length)];
+
+            var image = (Image)Properties.Resources.ResourceManager.GetObject(selectedName);
+
+            if (image != null)
+            {
+                Bitmap stretched = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
+                using (Graphics g = Graphics.FromImage(stretched))
+                {
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(image, new Rectangle(0, 0, stretched.Width, stretched.Height));
+                }
+                this.BackgroundImage = stretched;
+                this.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+        }
+
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
@@ -153,7 +180,7 @@ namespace Thesis_Proto3
 
             txt.Tag = placeholder; // store placeholder text
             txt.ForeColor = Color.Gray;
-            txt.Font = new Font(txt.Font.FontFamily, placeholderSize, FontStyle.Italic);
+            txt.Font = new Font(txt.Font.FontFamily, placeholderSize, FontStyle.Regular);
             txt.Text = placeholder;
             txt.UseSystemPasswordChar = false;
 
@@ -172,7 +199,7 @@ namespace Thesis_Proto3
             {
                 txt.Text = "";
                 txt.ForeColor = Color.Black;
-                txt.Font = new Font(txt.Font.FontFamily, 12, FontStyle.Regular);
+                txt.Font = new Font(txt.Font.FontFamily, 12, FontStyle.Italic);
             }
         }
 
@@ -184,7 +211,7 @@ namespace Thesis_Proto3
             if (string.IsNullOrWhiteSpace(txt.Text))
             {
                 txt.ForeColor = Color.Gray;
-                txt.Font = new Font(txt.Font.FontFamily, 10, FontStyle.Italic);
+                txt.Font = new Font(txt.Font.FontFamily, 12, FontStyle.Italic);
                 txt.Text = placeholder;
                 txt.UseSystemPasswordChar = false;
             }
@@ -206,5 +233,9 @@ namespace Thesis_Proto3
             }
         }
 
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

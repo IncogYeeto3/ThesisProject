@@ -57,7 +57,7 @@ namespace Thesis_Proto3
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(207, 38);
             this.btnLogOut.TabIndex = 12;
-            this.btnLogOut.Text = "Continue";
+            this.btnLogOut.Text = "Log Out";
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
@@ -70,7 +70,7 @@ namespace Thesis_Proto3
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1358, 95);
+            this.panelHeader.Size = new System.Drawing.Size(1128, 95);
             this.panelHeader.TabIndex = 13;
             // 
             // label2
@@ -122,7 +122,7 @@ namespace Thesis_Proto3
             this.panelLogin.Controls.Add(this.label4);
             this.panelLogin.Controls.Add(this.HeaderPanel);
             this.panelLogin.Controls.Add(this.btnLogOut);
-            this.panelLogin.Location = new System.Drawing.Point(498, 169);
+            this.panelLogin.Location = new System.Drawing.Point(383, 236);
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(400, 381);
             this.panelLogin.TabIndex = 14;
@@ -183,8 +183,9 @@ namespace Thesis_Proto3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Thesis_Proto3.Properties.Resources.Bg1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1358, 616);
+            this.ClientSize = new System.Drawing.Size(1128, 750);
             this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.panelHeader);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

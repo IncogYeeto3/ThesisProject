@@ -55,6 +55,7 @@
             this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(298, 29);
             this.txtPassword.TabIndex = 1;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // btnLogin
             // 
@@ -79,7 +80,7 @@
             this.panelLogin.Controls.Add(this.txtUserNumber);
             this.panelLogin.Controls.Add(this.label4);
             this.panelLogin.Controls.Add(this.HeaderPanel);
-            this.panelLogin.Location = new System.Drawing.Point(519, 228);
+            this.panelLogin.Location = new System.Drawing.Point(357, 217);
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(400, 323);
             this.panelLogin.TabIndex = 7;
@@ -129,7 +130,7 @@
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1419, 95);
+            this.panelHeader.Size = new System.Drawing.Size(1095, 95);
             this.panelHeader.TabIndex = 8;
             // 
             // label2
@@ -177,7 +178,7 @@
             // BtnToggleTime
             // 
             this.BtnToggleTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnToggleTime.Location = new System.Drawing.Point(1304, 680);
+            this.BtnToggleTime.Location = new System.Drawing.Point(980, 657);
             this.BtnToggleTime.Name = "BtnToggleTime";
             this.BtnToggleTime.Size = new System.Drawing.Size(103, 45);
             this.BtnToggleTime.TabIndex = 9;
@@ -190,7 +191,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1300, 656);
+            this.label3.Location = new System.Drawing.Point(976, 633);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 21);
             this.label3.TabIndex = 10;
@@ -202,8 +203,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1419, 737);
+            this.ClientSize = new System.Drawing.Size(1095, 714);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.BtnToggleTime);
             this.Controls.Add(this.panelHeader);
