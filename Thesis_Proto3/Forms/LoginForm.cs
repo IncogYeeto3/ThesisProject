@@ -129,7 +129,7 @@ namespace Thesis_Proto3
 
                     int logId = response.LogID;
 
-                    MessageBox.Show($"Attendance recorded! LogID = {logId}",
+                    MessageBox.Show("Attendance Recorded! LogID = {logId}",
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Open the student form with the logId
@@ -140,20 +140,20 @@ namespace Thesis_Proto3
                 catch (Exception ex)
                 {
                     // Handle unexpected errors (network, deserialization, etc.)
-                    MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
             else if (user.Role == "Employee") // Teacher
             {
-                MessageBox.Show($"Welcome Teacher-{user.Number}!");
+                MessageBox.Show("Welcome Teacher-{user.Number}!");
                 TeacherForm frm = new TeacherForm(user);
                 frm.Show();
                 this.Hide();
             }
             else if (user.Role == "MIS") // Admin
             {
-                MessageBox.Show($"Welcome Admin-{user.Username},{user.Number}!");
+                MessageBox.Show("Welcome Admin-{user.Username},{user.Number}!");
                 AdminForm frm = new AdminForm(user);
                 frm.Show();
                 this.Hide();

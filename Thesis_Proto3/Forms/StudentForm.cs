@@ -99,11 +99,11 @@ namespace Thesis_Proto3
                 {
                     await _api.UpdateLogOffTimeAsync(_currentLogId.Value);
 
-                    MessageBox.Show("LogOffTime recorded.");
+                    MessageBox.Show("Log-Off Time Recorded.");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error saving LogOffTime: " + ex.Message);
+                    MessageBox.Show("Error saving Log-Off Time: " + ex.Message);
                 }
             }
         }
