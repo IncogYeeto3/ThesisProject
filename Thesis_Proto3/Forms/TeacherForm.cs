@@ -352,6 +352,5 @@ namespace Thesis_Proto3.Forms
             flpFilters.Controls.Add(lbl);
         }
 
-        
     }
 }

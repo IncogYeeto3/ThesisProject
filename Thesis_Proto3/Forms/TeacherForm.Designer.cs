@@ -38,6 +38,13 @@
             this.btnViewAttendance = new System.Windows.Forms.Button();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnPageLast = new System.Windows.Forms.Button();
+            this.btnPageNext = new System.Windows.Forms.Button();
+            this.btnPageBack = new System.Windows.Forms.Button();
+            this.btnPageFirst = new System.Windows.Forms.Button();
+            this.lblPage = new System.Windows.Forms.Label();
             this.btnResetFilter = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,25 +54,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.btnPageLast = new System.Windows.Forms.Button();
-            this.btnPageNext = new System.Windows.Forms.Button();
-            this.btnPageBack = new System.Windows.Forms.Button();
-            this.btnPageFirst = new System.Windows.Forms.Button();
-            this.lblPage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.USTACLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel3.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // flpFilters
             // 
-            this.flpFilters.Location = new System.Drawing.Point(49, 165);
+            this.flpFilters.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flpFilters.Location = new System.Drawing.Point(49, 150);
             this.flpFilters.Name = "flpFilters";
-            this.flpFilters.Size = new System.Drawing.Size(1261, 42);
+            this.flpFilters.Size = new System.Drawing.Size(1456, 39);
             this.flpFilters.TabIndex = 26;
             // 
             // label4
@@ -77,11 +80,11 @@
             this.label4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label4.Location = new System.Drawing.Point(12, 100);
+            this.label4.Location = new System.Drawing.Point(4, 113);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(164, 32);
+            this.label4.Size = new System.Drawing.Size(206, 32);
             this.label4.TabIndex = 15;
-            this.label4.Text = "NAVIGATION";
+            this.label4.Text = "   NAVIGATION   ";
             // 
             // label2
             // 
@@ -133,9 +136,9 @@
             this.btnViewStudent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
             this.btnViewStudent.Image = ((System.Drawing.Image)(resources.GetObject("btnViewStudent.Image")));
             this.btnViewStudent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewStudent.Location = new System.Drawing.Point(18, 223);
+            this.btnViewStudent.Location = new System.Drawing.Point(3, 64);
             this.btnViewStudent.Name = "btnViewStudent";
-            this.btnViewStudent.Size = new System.Drawing.Size(182, 33);
+            this.btnViewStudent.Size = new System.Drawing.Size(212, 55);
             this.btnViewStudent.TabIndex = 9;
             this.btnViewStudent.Text = "View Student";
             this.btnViewStudent.UseVisualStyleBackColor = false;
@@ -150,20 +153,20 @@
             this.btnViewAttendance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
             this.btnViewAttendance.Image = ((System.Drawing.Image)(resources.GetObject("btnViewAttendance.Image")));
             this.btnViewAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewAttendance.Location = new System.Drawing.Point(18, 153);
+            this.btnViewAttendance.Location = new System.Drawing.Point(3, 3);
             this.btnViewAttendance.Name = "btnViewAttendance";
-            this.btnViewAttendance.Size = new System.Drawing.Size(209, 40);
+            this.btnViewAttendance.Size = new System.Drawing.Size(212, 55);
             this.btnViewAttendance.TabIndex = 10;
-            this.btnViewAttendance.Text = "View Attendance";
+            this.btnViewAttendance.Text = "       View Attendance";
             this.btnViewAttendance.UseVisualStyleBackColor = false;
             this.btnViewAttendance.Click += new System.EventHandler(this.btnViewAttendance_Click);
             // 
             // dgv
             // 
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Location = new System.Drawing.Point(49, 213);
+            this.dgv.Location = new System.Drawing.Point(49, 187);
             this.dgv.Name = "dgv";
-            this.dgv.Size = new System.Drawing.Size(1261, 386);
+            this.dgv.Size = new System.Drawing.Size(1456, 657);
             this.dgv.TabIndex = 8;
             this.dgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellDoubleClick);
             this.dgv.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_ColumnHeaderMouseClick);
@@ -179,125 +182,19 @@
             this.panel3.Controls.Add(this.dtpStartDate);
             this.panel3.Controls.Add(this.dgv);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(205, 0);
+            this.panel3.Location = new System.Drawing.Point(215, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1351, 691);
+            this.panel3.Size = new System.Drawing.Size(1554, 909);
             this.panel3.TabIndex = 22;
             // 
-            // btnResetFilter
+            // flowLayoutPanel1
             // 
-            this.btnResetFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnResetFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetFilter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetFilter.Location = new System.Drawing.Point(463, 119);
-            this.btnResetFilter.Name = "btnResetFilter";
-            this.btnResetFilter.Size = new System.Drawing.Size(108, 40);
-            this.btnResetFilter.TabIndex = 25;
-            this.btnResetFilter.Text = "ResetFilter";
-            this.btnResetFilter.UseVisualStyleBackColor = false;
-            this.btnResetFilter.Click += new System.EventHandler(this.btnResetFilter_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label6.Location = new System.Drawing.Point(253, 107);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 13);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "End Date";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label5.Location = new System.Drawing.Point(46, 107);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "Start Date";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // dtpEndDate
-            // 
-            this.dtpEndDate.CalendarFont = new System.Drawing.Font("Consolas", 18F);
-            this.dtpEndDate.Font = new System.Drawing.Font("Consolas", 18F);
-            this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEndDate.Location = new System.Drawing.Point(256, 123);
-            this.dtpEndDate.Name = "dtpEndDate";
-            this.dtpEndDate.Size = new System.Drawing.Size(201, 36);
-            this.dtpEndDate.TabIndex = 21;
-            this.dtpEndDate.ValueChanged += new System.EventHandler(this.dtpEndDate_ValueChanged);
-            // 
-            // dtpStartDate
-            // 
-            this.dtpStartDate.CalendarFont = new System.Drawing.Font("Consolas", 18F);
-            this.dtpStartDate.Font = new System.Drawing.Font("Consolas", 18F);
-            this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpStartDate.Location = new System.Drawing.Point(49, 123);
-            this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(201, 36);
-            this.dtpStartDate.TabIndex = 20;
-            this.dtpStartDate.Value = new System.DateTime(2025, 11, 22, 21, 33, 15, 0);
-            this.dtpStartDate.ValueChanged += new System.EventHandler(this.dtpStartDate_ValueChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.WindowText;
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.USTACLogo);
-            this.panel1.Controls.Add(this.btnViewStudent);
-            this.panel1.Controls.Add(this.btnViewAttendance);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(205, 691);
-            this.panel1.TabIndex = 20;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1108, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 32);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Teacher";
-            // 
-            // btnLogOut
-            // 
-            this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
-            this.btnLogOut.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnLogOut.FlatAppearance.BorderSize = 0;
-            this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogOut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogOut.Image = ((System.Drawing.Image)(resources.GetObject("btnLogOut.Image")));
-            this.btnLogOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogOut.Location = new System.Drawing.Point(1229, 0);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(122, 82);
-            this.btnLogOut.TabIndex = 16;
-            this.btnLogOut.Text = "Log Out";
-            this.btnLogOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLogOut.UseVisualStyleBackColor = false;
-            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
-            this.panel2.Controls.Add(this.btnLogOut);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(205, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1351, 82);
-            this.panel2.TabIndex = 21;
+            this.flowLayoutPanel1.Controls.Add(this.btnViewAttendance);
+            this.flowLayoutPanel1.Controls.Add(this.btnViewStudent);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 165);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(215, 132);
+            this.flowLayoutPanel1.TabIndex = 16;
             // 
             // panel4
             // 
@@ -306,7 +203,7 @@
             this.panel4.Controls.Add(this.btnPageBack);
             this.panel4.Controls.Add(this.btnPageFirst);
             this.panel4.Controls.Add(this.lblPage);
-            this.panel4.Location = new System.Drawing.Point(1114, 605);
+            this.panel4.Location = new System.Drawing.Point(1309, 850);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(196, 43);
             this.panel4.TabIndex = 28;
@@ -371,7 +268,7 @@
             // 
             this.lblPage.AutoSize = true;
             this.lblPage.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPage.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblPage.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblPage.Location = new System.Drawing.Point(72, 0);
             this.lblPage.Name = "lblPage";
             this.lblPage.Size = new System.Drawing.Size(53, 13);
@@ -379,12 +276,127 @@
             this.lblPage.Text = "Page 0/0";
             this.lblPage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // btnResetFilter
+            // 
+            this.btnResetFilter.BackColor = System.Drawing.Color.DarkRed;
+            this.btnResetFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetFilter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetFilter.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnResetFilter.Location = new System.Drawing.Point(463, 112);
+            this.btnResetFilter.Name = "btnResetFilter";
+            this.btnResetFilter.Size = new System.Drawing.Size(97, 35);
+            this.btnResetFilter.TabIndex = 25;
+            this.btnResetFilter.Text = "Reset Filter";
+            this.btnResetFilter.UseVisualStyleBackColor = false;
+            this.btnResetFilter.Click += new System.EventHandler(this.btnResetFilter_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label6.Location = new System.Drawing.Point(253, 98);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "End Date";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label5.Location = new System.Drawing.Point(46, 98);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Start Date";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // dtpEndDate
+            // 
+            this.dtpEndDate.CalendarFont = new System.Drawing.Font("Consolas", 18F);
+            this.dtpEndDate.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEndDate.Location = new System.Drawing.Point(256, 114);
+            this.dtpEndDate.Name = "dtpEndDate";
+            this.dtpEndDate.Size = new System.Drawing.Size(201, 32);
+            this.dtpEndDate.TabIndex = 21;
+            this.dtpEndDate.ValueChanged += new System.EventHandler(this.dtpEndDate_ValueChanged);
+            // 
+            // dtpStartDate
+            // 
+            this.dtpStartDate.CalendarFont = new System.Drawing.Font("Consolas", 18F);
+            this.dtpStartDate.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStartDate.Location = new System.Drawing.Point(49, 114);
+            this.dtpStartDate.Name = "dtpStartDate";
+            this.dtpStartDate.Size = new System.Drawing.Size(201, 32);
+            this.dtpStartDate.TabIndex = 20;
+            this.dtpStartDate.Value = new System.DateTime(2025, 11, 22, 21, 33, 15, 0);
+            this.dtpStartDate.ValueChanged += new System.EventHandler(this.dtpStartDate_ValueChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.WindowText;
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.USTACLogo);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(215, 909);
+            this.panel1.TabIndex = 20;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1210, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 32);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Teacher";
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
+            this.btnLogOut.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnLogOut.FlatAppearance.BorderSize = 0;
+            this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogOut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogOut.Image = ((System.Drawing.Image)(resources.GetObject("btnLogOut.Image")));
+            this.btnLogOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLogOut.Location = new System.Drawing.Point(1432, 0);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(122, 82);
+            this.btnLogOut.TabIndex = 16;
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogOut.UseVisualStyleBackColor = false;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
+            this.panel2.Controls.Add(this.btnLogOut);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(215, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1554, 82);
+            this.panel2.TabIndex = 21;
+            // 
             // TeacherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1556, 691);
+            this.ClientSize = new System.Drawing.Size(1769, 909);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -398,12 +410,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -434,5 +447,6 @@
         private System.Windows.Forms.Button btnPageBack;
         private System.Windows.Forms.Button btnPageFirst;
         private System.Windows.Forms.Label lblPage;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

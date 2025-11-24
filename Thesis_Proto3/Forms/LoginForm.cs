@@ -199,7 +199,7 @@ namespace Thesis_Proto3
             {
                 txt.Text = "";
                 txt.ForeColor = Color.Black;
-                txt.Font = new Font(txt.Font.FontFamily, 12, FontStyle.Italic);
+                txt.Font = new Font(txt.Font.FontFamily, 12, FontStyle.Regular);
             }
         }
 
@@ -233,9 +233,5 @@ namespace Thesis_Proto3
             }
         }
 
-        private void txtPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
