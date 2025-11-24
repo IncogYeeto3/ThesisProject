@@ -88,7 +88,7 @@
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Location = new System.Drawing.Point(49, 105);
             this.dgv.Name = "dgv";
-            this.dgv.Size = new System.Drawing.Size(1456, 655);
+            this.dgv.Size = new System.Drawing.Size(1617, 709);
             this.dgv.TabIndex = 8;
             this.dgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellDoubleClick);
             this.dgv.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_ColumnHeaderMouseClick);
@@ -132,7 +132,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1214, 25);
+            this.label1.Location = new System.Drawing.Point(1287, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 32);
             this.label1.TabIndex = 11;
@@ -147,7 +147,7 @@
             this.btnLogOut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogOut.Image = ((System.Drawing.Image)(resources.GetObject("btnLogOut.Image")));
             this.btnLogOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogOut.Location = new System.Drawing.Point(1441, 0);
+            this.btnLogOut.Location = new System.Drawing.Point(1587, 0);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(122, 82);
             this.btnLogOut.TabIndex = 16;
@@ -162,12 +162,13 @@
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.USTACLogo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(215, 903);
+            this.panel1.Size = new System.Drawing.Size(215, 1051);
             this.panel1.TabIndex = 17;
             // 
             // btnPrint
@@ -179,11 +180,11 @@
             this.btnPrint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(192)))), ((int)(((byte)(8)))));
             this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(3, 186);
+            this.btnPrint.Location = new System.Drawing.Point(-3, 355);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(212, 55);
             this.btnPrint.TabIndex = 16;
-            this.btnPrint.Text = "              Print";
+            this.btnPrint.Text = "                Print";
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -252,7 +253,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(215, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1563, 82);
+            this.panel2.Size = new System.Drawing.Size(1709, 82);
             this.panel2.TabIndex = 18;
             // 
             // panel3
@@ -268,7 +269,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(215, 82);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1563, 821);
+            this.panel3.Size = new System.Drawing.Size(1709, 969);
             this.panel3.TabIndex = 19;
             // 
             // flowLayoutPanel1
@@ -276,10 +277,9 @@
             this.flowLayoutPanel1.Controls.Add(this.btnSitIn);
             this.flowLayoutPanel1.Controls.Add(this.btnViewAttendance);
             this.flowLayoutPanel1.Controls.Add(this.btnViewStudent);
-            this.flowLayoutPanel1.Controls.Add(this.btnPrint);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 166);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(213, 255);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(213, 183);
             this.flowLayoutPanel1.TabIndex = 17;
             // 
             // panel4
@@ -289,9 +289,9 @@
             this.panel4.Controls.Add(this.btnPageBack);
             this.panel4.Controls.Add(this.btnPageFirst);
             this.panel4.Controls.Add(this.lblPage);
-            this.panel4.Location = new System.Drawing.Point(1309, 766);
+            this.panel4.Location = new System.Drawing.Point(1418, 846);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(196, 43);
+            this.panel4.Size = new System.Drawing.Size(248, 80);
             this.panel4.TabIndex = 27;
             // 
             // btnPageLast
@@ -300,9 +300,10 @@
             this.btnPageLast.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnPageLast.FlatAppearance.BorderSize = 0;
             this.btnPageLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPageLast.Location = new System.Drawing.Point(136, 17);
+            this.btnPageLast.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPageLast.Location = new System.Drawing.Point(180, 22);
             this.btnPageLast.Name = "btnPageLast";
-            this.btnPageLast.Size = new System.Drawing.Size(29, 23);
+            this.btnPageLast.Size = new System.Drawing.Size(52, 45);
             this.btnPageLast.TabIndex = 32;
             this.btnPageLast.Text = ">>";
             this.btnPageLast.UseVisualStyleBackColor = false;
@@ -314,9 +315,10 @@
             this.btnPageNext.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnPageNext.FlatAppearance.BorderSize = 0;
             this.btnPageNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPageNext.Location = new System.Drawing.Point(105, 17);
+            this.btnPageNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPageNext.Location = new System.Drawing.Point(145, 27);
             this.btnPageNext.Name = "btnPageNext";
-            this.btnPageNext.Size = new System.Drawing.Size(29, 23);
+            this.btnPageNext.Size = new System.Drawing.Size(29, 34);
             this.btnPageNext.TabIndex = 31;
             this.btnPageNext.Text = ">";
             this.btnPageNext.UseVisualStyleBackColor = false;
@@ -328,9 +330,10 @@
             this.btnPageBack.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnPageBack.FlatAppearance.BorderSize = 0;
             this.btnPageBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPageBack.Location = new System.Drawing.Point(70, 17);
+            this.btnPageBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPageBack.Location = new System.Drawing.Point(88, 28);
             this.btnPageBack.Name = "btnPageBack";
-            this.btnPageBack.Size = new System.Drawing.Size(29, 23);
+            this.btnPageBack.Size = new System.Drawing.Size(29, 34);
             this.btnPageBack.TabIndex = 30;
             this.btnPageBack.Text = "<";
             this.btnPageBack.UseVisualStyleBackColor = false;
@@ -342,9 +345,10 @@
             this.btnPageFirst.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnPageFirst.FlatAppearance.BorderSize = 0;
             this.btnPageFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPageFirst.Location = new System.Drawing.Point(35, 17);
+            this.btnPageFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPageFirst.Location = new System.Drawing.Point(35, 29);
             this.btnPageFirst.Name = "btnPageFirst";
-            this.btnPageFirst.Size = new System.Drawing.Size(29, 23);
+            this.btnPageFirst.Size = new System.Drawing.Size(47, 31);
             this.btnPageFirst.TabIndex = 29;
             this.btnPageFirst.Text = "<<";
             this.btnPageFirst.UseVisualStyleBackColor = false;
@@ -353,11 +357,11 @@
             // lblPage
             // 
             this.lblPage.AutoSize = true;
-            this.lblPage.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPage.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPage.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblPage.Location = new System.Drawing.Point(72, 0);
+            this.lblPage.Location = new System.Drawing.Point(83, 0);
             this.lblPage.Name = "lblPage";
-            this.lblPage.Size = new System.Drawing.Size(53, 13);
+            this.lblPage.Size = new System.Drawing.Size(91, 25);
             this.lblPage.TabIndex = 28;
             this.lblPage.Text = "Page 0/0";
             this.lblPage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -367,7 +371,7 @@
             this.flpFilters.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flpFilters.Location = new System.Drawing.Point(49, 70);
             this.flpFilters.Name = "flpFilters";
-            this.flpFilters.Size = new System.Drawing.Size(1456, 37);
+            this.flpFilters.Size = new System.Drawing.Size(1617, 29);
             this.flpFilters.TabIndex = 26;
             // 
             // btnResetFilter
@@ -436,7 +440,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1778, 903);
+            this.ClientSize = new System.Drawing.Size(1924, 1051);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

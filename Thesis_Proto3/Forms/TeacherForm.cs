@@ -26,6 +26,7 @@ namespace Thesis_Proto3.Forms
             InitializeComponent();
             _loggedInUser = loggedInUser;
             _api = new ApiService();
+
         }
 
         private void TeacherForm_Load(object sender, EventArgs e)
@@ -57,7 +58,8 @@ namespace Thesis_Proto3.Forms
             var result = await _api.GetStudentsAsync(filter);
 
             dgv.DataSource = ToDataTable(result.Records);
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.RowTemplate.Height = 30;
         }
 
         private async void btnViewAttendance_Click(object sender, EventArgs e)
@@ -268,7 +270,8 @@ namespace Thesis_Proto3.Forms
             var result = await _api.GetAttendanceUniversalAsync(request);
 
             dgv.DataSource = ToDataTable(result.Records);
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.RowTemplate.Height = 30;
             DisplayActiveFilters();
 
             // Update pagination label
